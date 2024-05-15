@@ -1,1 +1,3 @@
-# sae-203-reseau
+# planout
+
+Le site pour planifier et gérer votre projet.
