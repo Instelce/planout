@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-10" view-index="0" gantt-divider-location="432" resource-divider-location="300" version="3.2.3230" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="246" order="0"/>
+        <field id="tpd4" name="Date de début" width="92" order="1"/>
+        <field id="tpd5" name="Date de fin" width="93" order="2"/>
+        <option id="filter.completedTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Planification du projet" color="#8cb6ce" meeting="false" start="2024-05-17" duration="1" complete="0" thirdDate="2024-05-17" thirdDate-constraint="0" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="2" name="Création de la maquette figma" color="#8cb6ce" meeting="false" start="2024-05-20" duration="2" complete="0" thirdDate="2024-05-17" thirdDate-constraint="0" expand="true">
+            <depend id="5" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="3" name="Création schéma relationnel BDD" meeting="false" start="2024-05-20" duration="1" complete="0" expand="true"/>
+        <task id="4" name="Création du script SQL BDD" color="#8cb6ce" meeting="false" start="2024-05-20" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
+        <task id="5" name="Développement du Front (HTML/CSS)" color="#8cb6ce" meeting="false" start="2024-05-22" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true">
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="7" name="Homepage" meeting="false" start="2024-05-23" duration="1" complete="0" expand="true"/>
+        <task id="8" name="Page de liste des projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="Page détails projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
+        <task id="10" name="Template formulaire de création de colonne" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
+        <task id="6" name="Développement du Back" color="#8cb6ce" meeting="false" start="2024-05-14" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Mallet Piel" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Besson Celestin" function="Default:1" contacts="" phone=""/>
+        <resource id="2" name="Paille John" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Vivion Enzo" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
