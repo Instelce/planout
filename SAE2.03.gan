@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-10" view-index="0" gantt-divider-location="432" resource-divider-location="300" version="3.2.3230" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-09" view-index="0" gantt-divider-location="432" resource-divider-location="300" version="3.2.3230" locale="fr_FR">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="246" order="0"/>
@@ -37,24 +37,21 @@
         <task id="0" name="Planification du projet" color="#8cb6ce" meeting="false" start="2024-05-17" duration="1" complete="0" thirdDate="2024-05-17" thirdDate-constraint="0" expand="true">
             <depend id="2" type="2" difference="0" hardness="Strong"/>
             <depend id="3" type="2" difference="0" hardness="Strong"/>
-            <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="2" name="Création de la maquette figma" color="#8cb6ce" meeting="false" start="2024-05-20" duration="2" complete="0" thirdDate="2024-05-17" thirdDate-constraint="0" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
             <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="3" name="Création schéma relationnel BDD" meeting="false" start="2024-05-20" duration="1" complete="0" expand="true"/>
-        <task id="4" name="Création du script SQL BDD" color="#8cb6ce" meeting="false" start="2024-05-20" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
-        <task id="5" name="Développement du Front (HTML/CSS)" color="#8cb6ce" meeting="false" start="2024-05-22" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true">
-            <depend id="7" type="2" difference="0" hardness="Strong"/>
-            <depend id="8" type="2" difference="0" hardness="Strong"/>
-            <depend id="9" type="2" difference="0" hardness="Strong"/>
-            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        <task id="3" name="Création schéma relationnel BDD" meeting="false" start="2024-05-20" duration="1" complete="0" expand="true">
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="7" name="Homepage" meeting="false" start="2024-05-23" duration="1" complete="0" expand="true"/>
-        <task id="8" name="Page de liste des projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
-        <task id="9" name="Page détails projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
-        <task id="10" name="Template formulaire de création de colonne" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
+        <task id="4" name="Création du script SQL BDD" color="#8cb6ce" meeting="false" start="2024-05-21" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
+        <task id="5" name="Développement du Front (HTML/CSS)" color="#8cb6ce" meeting="false" start="2024-05-22" duration="5" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true">
+            <task id="7" name="Homepage" color="#8cb6ce" meeting="false" start="2024-05-22" duration="5" complete="0" thirdDate="2024-05-22" thirdDate-constraint="0" expand="true"/>
+            <task id="10" name="Template formulaire de création de colonne" color="#8cb6ce" meeting="false" start="2024-05-22" duration="5" complete="0" thirdDate="2024-05-22" thirdDate-constraint="0" expand="true"/>
+            <task id="9" name="Page détails projets" color="#8cb6ce" meeting="false" start="2024-05-22" duration="5" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
+            <task id="8" name="Page de liste des projets" color="#8cb6ce" meeting="false" start="2024-05-22" duration="5" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+        </task>
         <task id="6" name="Développement du Back" color="#8cb6ce" meeting="false" start="2024-05-22" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
