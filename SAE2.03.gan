@@ -41,6 +41,7 @@
         </task>
         <task id="2" name="Création de la maquette figma" color="#8cb6ce" meeting="false" start="2024-05-20" duration="2" complete="0" thirdDate="2024-05-17" thirdDate-constraint="0" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="3" name="Création schéma relationnel BDD" meeting="false" start="2024-05-20" duration="1" complete="0" expand="true"/>
         <task id="4" name="Création du script SQL BDD" color="#8cb6ce" meeting="false" start="2024-05-20" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
@@ -54,7 +55,7 @@
         <task id="8" name="Page de liste des projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
         <task id="9" name="Page détails projets" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
         <task id="10" name="Template formulaire de création de colonne" color="#8cb6ce" meeting="false" start="2024-05-23" duration="1" complete="0" thirdDate="2024-05-10" thirdDate-constraint="0" expand="true"/>
-        <task id="6" name="Développement du Back" color="#8cb6ce" meeting="false" start="2024-05-14" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
+        <task id="6" name="Développement du Back" color="#8cb6ce" meeting="false" start="2024-05-22" duration="1" complete="0" thirdDate="2024-05-14" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Mallet Piel" function="Default:0" contacts="" phone=""/>
