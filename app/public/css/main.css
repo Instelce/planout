@@ -1,4 +1,727 @@
-@import "satoshi.css";
+@charset "UTF-8";
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/**
+ * @license
+ *
+ * Font Family: Satoshi
+ * Designed by: Deni Anggara
+ * URL: https://www.fontshare.com/fonts/satoshi
+ * © 2024 Indian Type Foundry
+ *
+ * Font Styles:
+ * Satoshi Variable(Variable font)
+ * Satoshi Variable Italic(Variable font)
+ * Satoshi Light
+ * Satoshi Light Italic
+ * Satoshi Regular
+ * Satoshi Italic
+ * Satoshi Medium
+ * Satoshi Medium Italic
+ * Satoshi Bold
+ * Satoshi Bold Italic
+ * Satoshi Black
+ * Satoshi Black Italic
+ *
+*/
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+@font-face {
+  font-family: "Satoshi-Variable";
+  src: url("../fonts/Satoshi-Variable.woff2") format("woff2"), url("../fonts/Satoshi-Variable.woff") format("woff"), url("../fonts/Satoshi-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+@font-face {
+  font-family: "Satoshi-VariableItalic";
+  src: url("../fonts/Satoshi-VariableItalic.woff2") format("woff2"), url("../fonts/Satoshi-VariableItalic.woff") format("woff"), url("../fonts/Satoshi-VariableItalic.ttf") format("truetype");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Light";
+  src: url("../fonts/Satoshi-Light.woff2") format("woff2"), url("../fonts/Satoshi-Light.woff") format("woff"), url("../fonts/Satoshi-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-LightItalic";
+  src: url("../fonts/Satoshi-LightItalic.woff2") format("woff2"), url("../fonts/Satoshi-LightItalic.woff") format("woff"), url("../fonts/Satoshi-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Regular";
+  src: url("../fonts/Satoshi-Regular.woff2") format("woff2"), url("../fonts/Satoshi-Regular.woff") format("woff"), url("../fonts/Satoshi-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-Italic";
+  src: url("../fonts/Satoshi-Italic.woff2") format("woff2"), url("../fonts/Satoshi-Italic.woff") format("woff"), url("../fonts/Satoshi-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Medium";
+  src: url("../fonts/Satoshi-Medium.woff2") format("woff2"), url("../fonts/Satoshi-Medium.woff") format("woff"), url("../fonts/Satoshi-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-MediumItalic";
+  src: url("../fonts/Satoshi-MediumItalic.woff2") format("woff2"), url("../fonts/Satoshi-MediumItalic.woff") format("woff"), url("../fonts/Satoshi-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Bold";
+  src: url("../fonts/Satoshi-Bold.woff2") format("woff2"), url("../fonts/Satoshi-Bold.woff") format("woff"), url("../fonts/Satoshi-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-BoldItalic";
+  src: url("../fonts/Satoshi-BoldItalic.woff2") format("woff2"), url("../fonts/Satoshi-BoldItalic.woff") format("woff"), url("../fonts/Satoshi-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Black";
+  src: url("../fonts/Satoshi-Black.woff2") format("woff2"), url("../fonts/Satoshi-Black.woff") format("woff"), url("../fonts/Satoshi-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-BlackItalic";
+  src: url("../fonts/Satoshi-BlackItalic.woff2") format("woff2"), url("../fonts/Satoshi-BlackItalic.woff") format("woff"), url("../fonts/Satoshi-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
+.fill-horizontal {
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sep-top {
+  border-top: 1px solid rgb(var(--color-gray-3));
+}
+
+.sep-bottom {
+  border-bottom: 1px solid rgb(var(--color-gray-3));
+}
+
+.list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.list-wrapper {
+  grid-column: 2/4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.center-loader {
+  width: 100%;
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.page-padding {
+  padding: 0 var(--page-horizontal-padding);
+}
+
+.page-sticky {
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  position: sticky;
+}
+
+.w-half {
+  width: 50%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.f-col {
+  flex-direction: column;
+}
+
+.sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.gc-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gc-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gc-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gc-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.gc-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.gg-1 {
+  grid-gap: 1rem;
+}
+
+.gg-2 {
+  grid-gap: 2rem;
+}
+
+.gg-3 {
+  grid-gap: 3rem;
+}
+
+.gg-4 {
+  grid-gap: 4rem;
+}
+
+.gg-5 {
+  grid-gap: 5rem;
+}
+
+.gg-6 {
+  grid-gap: 6rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mt-6 {
+  margin-top: 6rem;
+}
+
+.mt-7 {
+  margin-top: 7rem;
+}
+
+.mt-8 {
+  margin-top: 8rem;
+}
+
+.mt-9 {
+  margin-top: 9rem;
+}
+
+.mt-10 {
+  margin-top: 10rem;
+}
+
+.mt-11 {
+  margin-top: 11rem;
+}
+
+.mt-12 {
+  margin-top: 12rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+.mb-6 {
+  margin-bottom: 6rem;
+}
+
+.mb-7 {
+  margin-bottom: 7rem;
+}
+
+.mb-8 {
+  margin-bottom: 8rem;
+}
+
+.mb-9 {
+  margin-bottom: 9rem;
+}
+
+.mb-10 {
+  margin-bottom: 10rem;
+}
+
+.mb-11 {
+  margin-bottom: 11rem;
+}
+
+.mb-12 {
+  margin-bottom: 12rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
+.mr-3 {
+  margin-right: 3rem;
+}
+
+.mr-4 {
+  margin-right: 4rem;
+}
+
+.mr-5 {
+  margin-right: 5rem;
+}
+
+.mr-6 {
+  margin-right: 6rem;
+}
+
+.mr-7 {
+  margin-right: 7rem;
+}
+
+.mr-8 {
+  margin-right: 8rem;
+}
+
+.mr-9 {
+  margin-right: 9rem;
+}
+
+.mr-10 {
+  margin-right: 10rem;
+}
+
+.mr-11 {
+  margin-right: 11rem;
+}
+
+.mr-12 {
+  margin-right: 12rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.ml-2 {
+  margin-left: 2rem;
+}
+
+.ml-3 {
+  margin-left: 3rem;
+}
+
+.ml-4 {
+  margin-left: 4rem;
+}
+
+.ml-5 {
+  margin-left: 5rem;
+}
+
+.ml-6 {
+  margin-left: 6rem;
+}
+
+.ml-7 {
+  margin-left: 7rem;
+}
+
+.ml-8 {
+  margin-left: 8rem;
+}
+
+.ml-9 {
+  margin-left: 9rem;
+}
+
+.ml-10 {
+  margin-left: 10rem;
+}
+
+.ml-11 {
+  margin-left: 11rem;
+}
+
+.ml-12 {
+  margin-left: 12rem;
+}
+
+.pt-1 {
+  padding-top: 1rem;
+}
+
+.pt-2 {
+  padding-top: 2rem;
+}
+
+.pt-3 {
+  padding-top: 3rem;
+}
+
+.pt-4 {
+  padding-top: 4rem;
+}
+
+.pt-5 {
+  padding-top: 5rem;
+}
+
+.pt-6 {
+  padding-top: 6rem;
+}
+
+.pt-7 {
+  padding-top: 7rem;
+}
+
+.pt-8 {
+  padding-top: 8rem;
+}
+
+.pt-9 {
+  padding-top: 9rem;
+}
+
+.pt-10 {
+  padding-top: 10rem;
+}
+
+.pt-11 {
+  padding-top: 11rem;
+}
+
+.pt-12 {
+  padding-top: 12rem;
+}
+
+.pb-1 {
+  padding-bottom: 1rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+
+.pb-3 {
+  padding-bottom: 3rem;
+}
+
+.pb-4 {
+  padding-bottom: 4rem;
+}
+
+.pb-5 {
+  padding-bottom: 5rem;
+}
+
+.pb-6 {
+  padding-bottom: 6rem;
+}
+
+.pb-7 {
+  padding-bottom: 7rem;
+}
+
+.pb-8 {
+  padding-bottom: 8rem;
+}
+
+.pb-9 {
+  padding-bottom: 9rem;
+}
+
+.pb-10 {
+  padding-bottom: 10rem;
+}
+
+.pb-11 {
+  padding-bottom: 11rem;
+}
+
+.pb-12 {
+  padding-bottom: 12rem;
+}
+
+.pr-1 {
+  padding-right: 1rem;
+}
+
+.pr-2 {
+  padding-right: 2rem;
+}
+
+.pr-3 {
+  padding-right: 3rem;
+}
+
+.pr-4 {
+  padding-right: 4rem;
+}
+
+.pr-5 {
+  padding-right: 5rem;
+}
+
+.pr-6 {
+  padding-right: 6rem;
+}
+
+.pr-7 {
+  padding-right: 7rem;
+}
+
+.pr-8 {
+  padding-right: 8rem;
+}
+
+.pr-9 {
+  padding-right: 9rem;
+}
+
+.pr-10 {
+  padding-right: 10rem;
+}
+
+.pr-11 {
+  padding-right: 11rem;
+}
+
+.pr-12 {
+  padding-right: 12rem;
+}
+
+.pl-1 {
+  padding-left: 1rem;
+}
+
+.pl-2 {
+  padding-left: 2rem;
+}
+
+.pl-3 {
+  padding-left: 3rem;
+}
+
+.pl-4 {
+  padding-left: 4rem;
+}
+
+.pl-5 {
+  padding-left: 5rem;
+}
+
+.pl-6 {
+  padding-left: 6rem;
+}
+
+.pl-7 {
+  padding-left: 7rem;
+}
+
+.pl-8 {
+  padding-left: 8rem;
+}
+
+.pl-9 {
+  padding-left: 9rem;
+}
+
+.pl-10 {
+  padding-left: 10rem;
+}
+
+.pl-11 {
+  padding-left: 11rem;
+}
+
+.pl-12 {
+  padding-left: 12rem;
+}
+
 :root {
   --color-background: 38, 38, 38;
   --color-gray: 65, 65, 65;
@@ -10,9 +733,16 @@
   --color-orange-light: 255, 192, 104;
   --color-pink: 254, 152, 192;
   --color-pink-light: 255, 214, 230;
+  --color-red: 255, 59, 48;
+  --color-green: 52, 199, 89;
   --font-fancy: "Satoshi", sans-serif;
   --font-main: "Inter", sans-serif;
   --horizontal-marge: 12%;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -20,7 +750,6 @@ body {
   color: rgb(var(--color-white));
   font-family: var(--font-main);
   font-size: 16px;
-  line-height: 100%;
 }
 
 a {
@@ -40,11 +769,216 @@ a {
 }
 .navbar ul {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
+}
+.navbar a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+.navbar a:hover {
+  color: rgb(var(--color-brown));
+}
+.navbar .profile {
+  padding: 0.5rem 1rem;
+  background: rgb(var(--color-gray));
+  border-radius: 1000px;
 }
 
-.btn {
-  padding: 0.5rem 1.5rem;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+form button,
+form input[type=submit] {
+  width: 100%;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.field:has(input.is-invalid) {
+  gap: 1rem;
+}
+
+.input {
+  display: flex;
+  position: relative;
+}
+.input label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  cursor: text;
+  transition: transform 0.2s ease, top 0.2s ease;
+}
+.input label::after {
+  content: "";
+  background: rgb(var(--color-background));
+  width: calc(100% + 5px);
+  height: 12%;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=search] {
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgb(var(--color-gray));
+  box-shadow: 0 3px 0 rgb(var(--color-gray));
+  background: rgb(var(--color-background));
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=password]:hover,
+input[type=search]:hover {
+  border: 1px solid rgb(var(--color-brown));
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=search]:focus {
+  border: 1px solid rgb(var(--color-brown));
+  box-shadow: 0 3px 0 var(--focus-box-shadow-color, rgb(var(--color-brown)));
+}
+input[type=text]:focus + label,
+input[type=email]:focus + label,
+input[type=password]:focus + label,
+input[type=search]:focus + label {
+  top: 0;
+  transform: translateY(-50%);
+}
+input[type=text]:focus + label::after,
+input[type=email]:focus + label::after,
+input[type=password]:focus + label::after,
+input[type=search]:focus + label::after {
+  opacity: 1;
+}
+input[type=text]:not(:placeholder-shown) + label,
+input[type=email]:not(:placeholder-shown) + label,
+input[type=password]:not(:placeholder-shown) + label,
+input[type=search]:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%);
+}
+input[type=text]:not(:placeholder-shown) + label::after,
+input[type=email]:not(:placeholder-shown) + label::after,
+input[type=password]:not(:placeholder-shown) + label::after,
+input[type=search]:not(:placeholder-shown) + label::after {
+  opacity: 1;
+}
+input[type=text].is-invalid,
+input[type=email].is-invalid,
+input[type=password].is-invalid,
+input[type=search].is-invalid {
+  --focus-box-shadow-color: rgb(var(--color-red));
+  border: 1px solid rgb(var(--color-red));
+}
+
+.invalid-feedback {
+  color: rgb(var(--color-red));
+}
+
+.btn,
+input[type=submit] {
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-weight: 500;
+  color: rgb(var(--color-background));
+  background: rgb(var(--color-brown));
+  border-radius: var(--radius);
+  border: 1px solid rgb(var(--color-brown));
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.btn:hover,
+input[type=submit]:hover {
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-brown));
+  box-shadow: 0 0 0 1px rgb(var(--color-brown));
+}
+.btn.sb,
+input[type=submit].sb {
+  justify-content: space-between;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-fancy);
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+h2 {
+  font-size: 3.2rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+.home {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+.home h1 {
+  font-weight: 700;
+  line-height: 120%;
+}
+.home .grid {
+  width: 100%;
+  position: fixed;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+}
+.home .grid span {
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgb(var(--color-brown));
+}
+.home .grid::after {
+  content: "";
+  width: 100%;
+  height: 200%;
+  position: absolute;
+  background: radial-gradient(50% 50% at 50% 50%, transparent 0%, rgb(var(--color-background)) 100%);
 }
 
 /*# sourceMappingURL=main.css.map */

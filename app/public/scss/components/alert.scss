@@ -1,0 +1,12 @@
+
+.alert {
+  width: 100%;
+  padding: 1rem 1.5rem;
+
+  &.alert-success {
+    background: rgba(var(--color-green), .2);
+    border: 1px solid rgb(var(--color-green));
+  }
+}
+
+

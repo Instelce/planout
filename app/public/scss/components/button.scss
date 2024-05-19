@@ -1,4 +1,33 @@
 
-.btn {
-  padding: .5rem 1.5rem;
+.btn,
+input[type="submit"] {
+  padding: .8rem 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: inherit;
+  font-weight: 500;
+  color: rgb(var(--color-background));
+
+  background: rgb(var(--color-brown));
+  border-radius: var(--radius);
+  border: 1px solid rgb(var(--color-brown));
+
+  cursor: pointer;
+
+  transition: box-shadow .3s ease, background-color .3s ease, color .3s ease;
+
+  &:hover {
+    //background: rgb(var(--color-gray));
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-brown));
+    box-shadow: 0 0 0 1px rgb(var(--color-brown));
+  }
+
+  &.sb {
+    justify-content: space-between;
+  }
 }
+

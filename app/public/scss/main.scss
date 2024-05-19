@@ -1,5 +1,10 @@
 
-@import "satoshi.css";
+@import "base/reset";
+@import "fonts/satoshi";
+@import "base/exeptions";
+@import "base/helpers";
+@import "base/layout";
+@import "base/spaces";
 
 :root {
   --color-background: 38, 38, 38;
@@ -14,10 +19,19 @@
   --color-pink: 254, 152, 192;
   --color-pink-light: 255, 214, 230;
 
+  --color-red: 255, 59, 48;
+  --color-green: 52, 199, 89;
+
   --font-fancy: "Satoshi", sans-serif;
   --font-main: "Inter", sans-serif;
 
   --horizontal-marge: 12%;
+
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -26,7 +40,6 @@ body {
   color: rgb(var(--color-white));
   font-family: var(--font-main);
   font-size: 16px;
-  line-height: 100%;
 }
 
 a {
@@ -40,4 +53,9 @@ a {
 
 
 @import "layouts/navbar";
+@import "layouts/form";
 @import "components/button";
+@import "typescale";
+
+// custom styles for views
+@import "views/home";

@@ -1,0 +1,120 @@
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  button,
+  input[type=submit] {
+    width: 100%;
+  }
+
+}
+
+.field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  &:has(input.is-invalid) {
+    gap: 1rem;
+  }
+}
+
+// does contains input and label
+.input {
+  display: flex;
+
+  position: relative;
+
+  label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    cursor: text;
+
+    transition: transform .2s ease, top .2s ease;
+
+    &::after {
+      content: "";
+      background: rgb(var(--color-background));
+      width: calc(100% + 5px);
+      height: 12%;
+      border-radius: 5px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+  }
+}
+
+input {
+  width: 100%;
+  outline: none;
+
+  color: inherit;
+  font-size: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+  padding: .8rem 1rem;
+
+  border-radius: var(--radius);
+  border: 1px solid rgb(var(--color-gray));
+  box-shadow: 0 3px 0 rgb(var(--color-gray));
+  background: rgb(var(--color-background));
+
+  transition: border .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    border: 1px solid rgb(var(--color-brown));
+  }
+
+  &:focus {
+    border: 1px solid rgb(var(--color-brown));
+    box-shadow: 0 3px 0 var(--focus-box-shadow-color, rgb(var(--color-brown)));
+
+    & + label {
+      top: 0;
+      transform: translateY(-50%);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &.is-invalid {
+    --focus-box-shadow-color: rgb(var(--color-red));
+    border: 1px solid rgb(var(--color-red));
+  }
+}
+
+textarea {
+
+  &.is-invalid {
+
+  }
+}
+
+.invalid-feedback {
+  color: rgb(var(--color-red));
+}

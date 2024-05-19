@@ -8,6 +8,24 @@
 
   ul {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
+  }
+
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    transition: color .3s ease;
+
+    &:hover {
+      color: rgb(var(--color-brown));
+    }
+  }
+
+  .profile {
+    padding: .5rem 1rem;
+    background: rgb(var(--color-gray));
+    border-radius: 1000px;
   }
 }

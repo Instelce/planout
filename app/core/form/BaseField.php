@@ -21,16 +21,17 @@ abstract class BaseField
     public function __toString()
     {
         return sprintf('
-            <div class="mb-3">
-                <label class="form-label">%s</label>
-                %s
-                <div class="invalid-feedback">
+            <div class="field">
+                <div class="input">
                     %s
+                    <label class="form-label" for="%s">%s</label>
                 </div>
+                <div class="invalid-feedback">%s</div>
             </div>
         ',
-            $this->model->getLabel($this->attr) ?? ucfirst($this->attr),
             $this->renderInput(),
+            $this->attr,
+            $this->model->getLabel($this->attr) ?? ucfirst($this->attr),
             $this->model->getFirstError($this->attr)
         );
     }

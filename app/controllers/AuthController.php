@@ -28,7 +28,7 @@ class AuthController extends Controller
                 exit;
             }
         }
-        $this->setLayout('auth');
+//        $this->setLayout('auth');
         return $this->render('login', ['model' => $loginForm]);
     }
 
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
             if ($user->validate() && $user->save()) {
                 Application::$app->session->setFlash("success", "Your account has been created successfully");
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('/connexion');
                 exit;
             }
 
@@ -50,7 +50,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $this->setLayout('auth');
+//        $this->setLayout('auth');
         return $this->render('register', [
             'model' => $user
         ]);
