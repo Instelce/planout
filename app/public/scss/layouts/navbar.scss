@@ -1,0 +1,13 @@
+
+.navbar {
+  padding: 2rem var(--horizontal-marge);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+    gap: 2rem;
+  }
+}
