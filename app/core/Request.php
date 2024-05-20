@@ -6,6 +6,8 @@ namespace app\core;
 
 class Request
 {
+    public array $params = [];
+
     public function getPath ()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -51,5 +53,10 @@ class Request
         }
 
         return $body;
+    }
+
+    public function getParam(string $name)
+    {
+        return $this->params[$name];
     }
 }

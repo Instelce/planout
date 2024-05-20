@@ -14,7 +14,8 @@ class TextareaField extends BaseField
 
     public function renderInput(): string
     {
-        return sprintf('<textarea name="%s" class="form-control %s">%s</textarea>',
+        return sprintf('<textarea id="%s" name="%s" class="form-control %s" placeholder="">%s</textarea>',
+            $this->attr,
             $this->attr,
             $this->model->hasError($this->attr) ? 'is-invalid' : '',
             $this->model->{$this->attr}

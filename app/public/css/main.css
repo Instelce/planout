@@ -758,7 +758,8 @@ a {
 }
 
 .container {
-  padding: 2rem var(--horizontal-marge);
+  min-height: 100vh;
+  padding: 0 var(--horizontal-marge);
 }
 
 .navbar {
@@ -786,6 +787,31 @@ a {
   border-radius: 1000px;
 }
 
+.header {
+  padding: 1rem 0;
+  border-top: 1px solid rgb(var(--color-gray));
+  border-bottom: 1px solid rgb(var(--color-gray));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header.header-page {
+  padding: 2rem 0;
+}
+
+body > footer {
+  padding: 1rem var(--horizontal-marge);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+body > footer .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -810,6 +836,10 @@ form input[type=submit] {
   display: flex;
   position: relative;
 }
+.input:has(textarea) label {
+  top: 0.8rem;
+  transform: translateY(0);
+}
 .input label {
   position: absolute;
   top: 50%;
@@ -832,17 +862,26 @@ form input[type=submit] {
   opacity: 0;
 }
 
-input {
+input,
+textarea {
   width: 100%;
   outline: none;
   color: inherit;
   font-size: inherit;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 4rem;
+  resize: vertical;
 }
 
 input[type=text],
 input[type=email],
 input[type=password],
-input[type=search] {
+input[type=search],
+input[type=date],
+textarea {
   padding: 0.8rem 1rem;
   border-radius: var(--radius);
   border: 1px solid rgb(var(--color-gray));
@@ -853,46 +892,60 @@ input[type=search] {
 input[type=text]:hover,
 input[type=email]:hover,
 input[type=password]:hover,
-input[type=search]:hover {
+input[type=search]:hover,
+input[type=date]:hover,
+textarea:hover {
   border: 1px solid rgb(var(--color-brown));
 }
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus,
-input[type=search]:focus {
+input[type=search]:focus,
+input[type=date]:focus,
+textarea:focus {
   border: 1px solid rgb(var(--color-brown));
   box-shadow: 0 3px 0 var(--focus-box-shadow-color, rgb(var(--color-brown)));
 }
 input[type=text]:focus + label,
 input[type=email]:focus + label,
 input[type=password]:focus + label,
-input[type=search]:focus + label {
+input[type=search]:focus + label,
+input[type=date]:focus + label,
+textarea:focus + label {
   top: 0;
   transform: translateY(-50%);
 }
 input[type=text]:focus + label::after,
 input[type=email]:focus + label::after,
 input[type=password]:focus + label::after,
-input[type=search]:focus + label::after {
+input[type=search]:focus + label::after,
+input[type=date]:focus + label::after,
+textarea:focus + label::after {
   opacity: 1;
 }
 input[type=text]:not(:placeholder-shown) + label,
 input[type=email]:not(:placeholder-shown) + label,
 input[type=password]:not(:placeholder-shown) + label,
-input[type=search]:not(:placeholder-shown) + label {
+input[type=search]:not(:placeholder-shown) + label,
+input[type=date]:not(:placeholder-shown) + label,
+textarea:not(:placeholder-shown) + label {
   top: 0;
   transform: translateY(-50%);
 }
 input[type=text]:not(:placeholder-shown) + label::after,
 input[type=email]:not(:placeholder-shown) + label::after,
 input[type=password]:not(:placeholder-shown) + label::after,
-input[type=search]:not(:placeholder-shown) + label::after {
+input[type=search]:not(:placeholder-shown) + label::after,
+input[type=date]:not(:placeholder-shown) + label::after,
+textarea:not(:placeholder-shown) + label::after {
   opacity: 1;
 }
 input[type=text].is-invalid,
 input[type=email].is-invalid,
 input[type=password].is-invalid,
-input[type=search].is-invalid {
+input[type=search].is-invalid,
+input[type=date].is-invalid,
+textarea.is-invalid {
   --focus-box-shadow-color: rgb(var(--color-red));
   border: 1px solid rgb(var(--color-red));
 }
@@ -903,28 +956,149 @@ input[type=search].is-invalid {
 
 .btn,
 input[type=submit] {
+  --color-text: rgb(var(--color-background));
+  --color-text-hover: rgb(var(--color-brown));
+  --color-bg: rgb(var(--color-brown));
+  --color-bg-hover: rgb(var(--color-background));
+  --color-border: rgb(var(--color-brown));
   padding: 0.8rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: inherit;
   font-weight: 500;
-  color: rgb(var(--color-background));
-  background: rgb(var(--color-brown));
+  color: var(--color-text);
   border-radius: var(--radius);
-  border: 1px solid rgb(var(--color-brown));
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   cursor: pointer;
   transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 .btn:hover,
 input[type=submit]:hover {
-  background: rgb(var(--color-background));
-  color: rgb(var(--color-brown));
-  box-shadow: 0 0 0 1px rgb(var(--color-brown));
+  background: var(--color-bg-hover);
+  color: var(--color-text-hover);
+  box-shadow: 0 0 0 1px var(--color-border);
 }
 .btn.sb,
 input[type=submit].sb {
   justify-content: space-between;
+}
+.btn.rounded,
+input[type=submit].rounded {
+  padding: 1rem;
+  border-radius: 1000px;
+}
+.btn.btn-gray,
+input[type=submit].btn-gray {
+  --color-bg: rgb(var(--color-gray));
+  --color-text: rgb(var(--color-brown));
+  --color-border: rgb(var(--color-gray));
+}
+.btn.btn-danger,
+input[type=submit].btn-danger {
+  --color-bg: rgb(var(--color-red));
+  --color-text: rgb(var(--color-background));
+  --color-text-hover: rgb(var(--color-red));
+  --color-border: rgb(var(--color-red));
+}
+
+.alert {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+}
+.alert.alert-success {
+  background: rgba(var(--color-green), 0.2);
+  border: 1px solid rgb(var(--color-green));
+}
+
+.modal {
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(var(--color-background));
+  border-radius: var(--radius);
+  border: 2px solid rgb(var(--color-gray));
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.modal .buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 2px solid rgb(var(--color-gray));
+  border-radius: 20px;
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+.project-card:hover {
+  transform: scale(1.02);
+  border: 2px solid rgb(var(--color-brown));
+}
+.project-card:hover .bottom {
+  --color: rgb(var(--color-brown));
+  color: rgb(var(--color-background));
+}
+.project-card .tasks {
+  min-height: 10rem;
+  max-height: 10rem;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  z-index: 4;
+}
+.project-card .bottom {
+  --color: rgb(var(--color-gray));
+  padding: 1rem 2rem;
+  background: var(--color);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 1.2rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.project-card .bottom::after, .project-card .bottom::before {
+  --size: 2rem;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  transition: background-color 0.2s ease;
+}
+.project-card .bottom::before {
+  width: calc(var(--size) + 2px);
+  height: calc(var(--size) + 2px);
+  background: rgb(var(--color-background));
+  z-index: 2;
+  border-radius: 0 0 0 1000px;
+}
+.project-card .bottom::after {
+  background: var(--color);
+}
+.project-card .bottom .remaining-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.project-card .bottom .remaining-time svg {
+  margin-bottom: 0.35rem;
 }
 
 h1, h2, h3, h4 {

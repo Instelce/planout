@@ -8,6 +8,7 @@ abstract class DBModel extends Model
     abstract public static function tableName(): string;
 
     abstract public function attributes(): array;
+    abstract public function canUpdateAttributes(): array;
 
     abstract public static function pk(): string;
 
@@ -26,6 +27,35 @@ abstract class DBModel extends Model
         return true;
     }
 
+    public function update() {
+        $tableName = $this->tableName();
+        $attributes = $this->canUpdateAttributes();
+        $set = array_map(fn($attr) => "$attr = :$attr", $attributes);
+        $pk = static::pk();
+        $pkValue = $this->{$pk};
+
+        $statement = self::prepare("UPDATE $tableName SET ".implode(",", $set)." WHERE $pk = $pkValue;");
+
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+
+        $statement->execute();
+        return true;
+    }
+
+    public function destroy()
+    {
+        $tableName = static::tableName();
+        $pk = static::pk();
+        $pkValue = $this->{$pk};
+
+        $statement = self::prepare("DELETE FROM $tableName WHERE $pk = $pkValue;");
+        $statement->execute();
+
+        return true;
+    }
+
     public static function findOne($where)
     {
         $tableName = static::tableName();
@@ -40,6 +70,22 @@ abstract class DBModel extends Model
         $statement->execute();
 
         return $statement->fetchObject(static::class);
+    }
+
+    public static function find($where)
+    {
+        $tableName = static::tableName();
+        $attributes = array_keys($where);
+
+        $whereStr = implode("AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
+
+        $statement = self::prepare("SELECT * FROM $tableName WHERE ".$whereStr);
+        foreach ($where as $key => $item) {
+            $statement->bindValue(":$key", $item);
+        }
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
     public static function prepare($sql)

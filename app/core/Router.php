@@ -36,6 +36,32 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
+        // check if path has params like /projets/<pk:int> and get the value (/projets/1 => 1)
+        $selectedRoute = null;
+        foreach ($this->routes[$method] as $route => $routeCallback) {
+            $params = explode('/', $route);
+            $pathParts = explode('/', $path);
+
+            if (count($params) === count($pathParts)) {
+                foreach ($params as $i => $param) {
+                    if (preg_match('<(\w+):(\w+)>', $param, $matches)) {
+                        $paramName = $matches[1];
+                        $paramType = $matches[2];
+                        if ($paramType === 'int') {
+                            if (is_numeric($pathParts[$i])) {
+                                $selectedRoute = $route;
+                                $this->request->params[$paramName] = (int)$pathParts[$i];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($selectedRoute) {
+            $callback = $this->routes[$method][$selectedRoute];
+        }
+
         if (!$callback) {
             throw new NotFoundException();
         }

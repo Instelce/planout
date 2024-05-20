@@ -1,0 +1,79 @@
+
+.project-card {
+  overflow: hidden;
+
+  border: 2px solid rgb(var(--color-gray));
+  border-radius: 20px;
+
+  transition: transform .3s ease, border .3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    border: 2px solid rgb(var(--color-brown));
+
+    .bottom {
+      --color: rgb(var(--color-brown));
+      color: rgb(var(--color-background));
+    }
+  }
+
+  .tasks {
+    min-height: 10rem;
+    max-height: 10rem;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    z-index: 4;
+  }
+
+  .bottom {
+    --color: rgb(var(--color-gray));
+    padding: 1rem 2rem;
+    background: var(--color);
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 500;
+    font-size: 1.2rem;
+
+    transition: background-color .2s ease, color .2s ease;
+
+    &::after,
+    &::before {
+      --size: 2rem;
+      content: "";
+      width: var(--size);
+      height: var(--size);
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+
+      transition: background-color .2s ease;
+    }
+
+    &::before {
+      width: calc(var(--size) + 2px);
+      height: calc(var(--size) + 2px);
+      background: rgb(var(--color-background));
+      z-index: 2;
+      border-radius: 0 0 0 1000px;
+    }
+
+    &::after {
+      background: var(--color);
+    }
+
+    .remaining-time {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+
+      svg {
+        margin-bottom: .35rem;
+      }
+    }
+  }
+}

@@ -38,6 +38,11 @@ class User extends UserModel
         return ['username', 'status', 'email', 'password'];
     }
 
+    public function canUpdateAttributes(): array
+    {
+        return ['username', 'email'];
+    }
+
     public function rules(): array
     {
         return [

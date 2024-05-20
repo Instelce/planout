@@ -29,6 +29,13 @@ form {
 
   position: relative;
 
+  &:has(textarea) {
+    label {
+      top: .8rem;
+      transform: translateY(0);
+    }
+  }
+
   label {
     position: absolute;
     top: 50%;
@@ -54,18 +61,27 @@ form {
   }
 }
 
-input {
+input,
+textarea {
   width: 100%;
   outline: none;
 
   color: inherit;
   font-size: inherit;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 4rem;
+  resize: vertical;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+input[type="date"],
+textarea {
   padding: .8rem 1rem;
 
   border-radius: var(--radius);
@@ -108,12 +124,6 @@ input[type="search"] {
   }
 }
 
-textarea {
-
-  &.is-invalid {
-
-  }
-}
 
 .invalid-feedback {
   color: rgb(var(--color-red));

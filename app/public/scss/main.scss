@@ -48,13 +48,21 @@ a {
 }
 
 .container {
-  padding: 2rem var(--horizontal-marge);
+  min-height: 100vh;
+  padding: 0 var(--horizontal-marge);
 }
 
 
 @import "layouts/navbar";
+@import "layouts/header";
+@import "layouts/footer";
 @import "layouts/form";
+
 @import "components/button";
+@import "components/alert";
+@import "components/modal";
+@import "components/project-card";
+
 @import "typescale";
 
 // custom styles for views

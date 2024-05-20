@@ -24,7 +24,7 @@ class AuthController extends Controller
             $loginForm->loadData($request->getBody());
 
             if ($loginForm->validate() && $loginForm->login()) {
-                $response->redirect("/");
+                $response->redirect("/projets");
                 exit;
             }
         }
@@ -59,7 +59,7 @@ class AuthController extends Controller
     public function logout(Request $request, Response $response)
     {
         Application::$app->logout();
-        $response->redirect('/');
+        $response->redirect('/connexion');
     }
 
     public function profile() {
