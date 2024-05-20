@@ -31,7 +31,8 @@ $app->router->get('/', [SiteController::class, 'home']);
 
 $app->router->get('/projects', [ProjectController::class, 'list']);
 $app->router->get('/projects/<pk:int>', [ProjectController::class, 'details']);
-$app->router->post('/projects/delete/<pk:int>/', [ProjectController::class, 'delete']); // for deletion
+$app->router->get('/projects/delete/<pk:int>', [ProjectController::class, 'delete']);
+$app->router->post('/projects/delete/<pk:int>', [ProjectController::class, 'delete']);
 $app->router->get('/projects/new', [ProjectController::class, 'create']);
 $app->router->post('/projects/new', [ProjectController::class, 'create']);
 $app->router->get('/projects/edit/<pk:int>', [ProjectController::class, 'update']);

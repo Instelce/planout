@@ -7,7 +7,7 @@ $this->title = 'Inscription';
 ?>
 
 
-<div class="flex items-center f-col">
+<div class="page-form">
     <h2 class="mb-2">Inscription</h2>
 
     <div class="w-half">

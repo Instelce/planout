@@ -22,10 +22,14 @@ $this->title = $project->name;
     </div>
 </header>
 
-<div id="m1" class="modal">
-    <h3>Êtes vous sûr ?</h3>
-    <div class="buttons">
-        <a href="/projects/delete/<?php echo $project->id ?>?confirm=true" class="btn btn-danger">Oui</a>
-        <button onclick="toggleModal(1)" class="btn">Non</button>
+
+<div id="m1" class="modal-container">
+    <div class="modal">
+        <h3>Êtes vous sûr ?</h3>
+        <div class="buttons">
+            <a href="/projects/delete/<?php echo $project->id ?>?confirm=true" class="btn btn-danger">Oui</a>
+            <button onclick="toggleModal(1)" class="btn btn-gray">Non</button>
+        </div>
     </div>
+    <div class="close" onclick="toggleModal(1)"></div>
 </div>

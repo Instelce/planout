@@ -6,8 +6,8 @@ $this->title = "Connexion";
 ?>
 
 
-<div class="flex items-center f-col">
-    <h1 class="mb-2">Connexion</h1>
+<div class="page-form">
+    <h2 class="mb-2">Connexion</h2>
     <div class="w-half">
         <?php $form = \app\core\form\Form::begin('', 'post') ?>
         <?php echo $form->field($model, 'email') ?>

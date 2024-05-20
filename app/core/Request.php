@@ -6,6 +6,7 @@ namespace app\core;
 
 class Request
 {
+    public array $routeParams = [];
     public array $params = [];
 
     public function getPath ()
@@ -15,6 +16,14 @@ class Request
 
         if (!$position) {
             return $path;
+        }
+        
+        $params = substr($path, $position + 1);
+        $params = explode('&', $params);
+
+        foreach ($params as $param) {
+            $cut = explode('=', $param);
+            $this->params[$cut[0]] = $cut[1];
         }
 
         return substr($path, 0, $position);
@@ -53,6 +62,11 @@ class Request
         }
 
         return $body;
+    }
+
+    public function getRouteParam(string $name)
+    {
+        return $this->routeParams[$name];
     }
 
     public function getParam(string $name)

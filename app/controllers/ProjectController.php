@@ -13,7 +13,7 @@ class ProjectController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['list', 'create']));
+        $this->registerMiddleware(new AuthMiddleware(['list', 'details', 'create', 'delete']));
     }
 
     public function list()
@@ -25,7 +25,7 @@ class ProjectController extends Controller
 
     public function details(Request $request)
     {
-        $pk = $request->getParam('pk');
+        $pk = $request->getRouteParam('pk');
 
         $project = Project::findOne(['id' => $pk]);
 
@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
             if ($project->validate() && $project->save()) {
                 Application::$app->session->setFlash('success', "$project->name à bien été créé");
-                Application::$app->response->redirect('/projets');
+                Application::$app->response->redirect('/projects');
                 exit;
             }
 
@@ -57,7 +57,7 @@ class ProjectController extends Controller
 
     public function update(Request $request)
     {
-        $pk = $request->getParam('pk');
+        $pk = $request->getRouteParam('pk');
         $project = Project::findOne(['id' => $pk]);
 
         if ($request->isPost()) {
@@ -65,7 +65,7 @@ class ProjectController extends Controller
 
             if ($project->validate() && $project->update()) {
                 Application::$app->session->setFlash('success', "$project->name à bien été mit à jour");
-                Application::$app->response->redirect("/projets/$pk");
+                Application::$app->response->redirect("/projects/$pk");
                 exit;
             }
         }
@@ -73,8 +73,20 @@ class ProjectController extends Controller
         return $this->render('projects/update', ['model' => $project]);
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
+        $confirm = $request->getParam('confirm');
+        $pk = $request->getRouteParam('pk');
+        $project = Project::findOne(['id' => $pk]);
 
+        if ($confirm || $request->isPost()) {
+            if ($project->destroy()) {
+                Application::$app->session->setFlash('success', "$project->name à bien été supprimé");
+                Application::$app->response->redirect("/projects");
+                exit;
+            }
+        }
+
+        return $this->render('projects/delete', ['model' => $project]);
     }
 }

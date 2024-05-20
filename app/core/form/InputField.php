@@ -34,7 +34,7 @@ class InputField extends BaseField
     public function renderInput(): string
     {
         $value = $this->model->{$this->attr};
-        if ($this->type === self::DATE_TYPE) {
+        if ($this->type === self::DATE_TYPE && $this->model->{$this->attr} !== '') {
             $value = date('Y-m-d', strtotime($this->model->{$this->attr}));
         }
         return sprintf('<input type="%s" id="%s" name="%s" value="%s" class="%s" placeholder="">',

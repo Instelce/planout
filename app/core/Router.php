@@ -41,8 +41,9 @@ class Router
         foreach ($this->routes[$method] as $route => $routeCallback) {
             $params = explode('/', $route);
             $pathParts = explode('/', $path);
+            $pathWithoutValue = implode('/', array_slice($pathParts, 0, count($pathParts) - 1));
 
-            if (count($params) === count($pathParts)) {
+            if (count($params) === count($pathParts) && substr($route, 0, strpos($route, '/<')) === $pathWithoutValue) {
                 foreach ($params as $i => $param) {
                     if (preg_match('<(\w+):(\w+)>', $param, $matches)) {
                         $paramName = $matches[1];
@@ -50,7 +51,7 @@ class Router
                         if ($paramType === 'int') {
                             if (is_numeric($pathParts[$i])) {
                                 $selectedRoute = $route;
-                                $this->request->params[$paramName] = (int)$pathParts[$i];
+                                $this->request->routeParams[$paramName] = (int)$pathParts[$i];
                             }
                         }
                     }

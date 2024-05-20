@@ -24,7 +24,7 @@ class AuthController extends Controller
             $loginForm->loadData($request->getBody());
 
             if ($loginForm->validate() && $loginForm->login()) {
-                $response->redirect("/projets");
+                $response->redirect("/projects");
                 exit;
             }
         }
