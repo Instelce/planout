@@ -37,6 +37,7 @@ $app->router->get('/projects/new', [ProjectController::class, 'create']);
 $app->router->post('/projects/new', [ProjectController::class, 'create']);
 $app->router->get('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
 $app->router->post('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
+$app->router->get('/projects/<pk:int>/members/new', [MemberController::class, 'create']);
 
 
 // auth routes
