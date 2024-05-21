@@ -9,6 +9,7 @@ use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\Member;
 use app\models\Project;
+use app\models\User;
 
 class MemberController extends Controller
 {
@@ -31,8 +32,13 @@ class MemberController extends Controller
     {
         $member = new Member();
 
+        // use for autocomplete
+        $users = User::all();
+        $users = array_filter($users, fn($user) => $user->id !== Application::$app->session->get('user')); // remove the current user
+
         if ($request->isPost()){
             $member->loadData($request->getBody());
+
             if($member->validate() && $member->save()){
                 Application::$app->session->setFlash('success', "$member->user_email à bien été ajouté au projet");
                 Application::$app->response->redirect("/projects/$member->project");
@@ -42,7 +48,7 @@ class MemberController extends Controller
             return $this->render("members/create", ['model' => $member]);
         }
 
-        return $this->render("members/create", ['model' => $member]);
+        return $this->render("members/create", ['model' => $member, 'users' => $users]);
     }
 
     public function update(Request $request)

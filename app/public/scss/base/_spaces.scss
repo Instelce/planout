@@ -12,10 +12,51 @@
     ),
   );
 
+  $ctr: 1;
+  @while $ctr <= 12 {
+    .mx-#{$ctr} {
+      margin-left: #{$ctr}rem;
+      margin-right: #{$ctr}rem;
+    }
+    $ctr: $ctr + 1;
+  }
+  $ctr: 1;
+  @while $ctr <= 12 {
+    .px-#{$ctr} {
+      padding-left: #{$ctr}rem;
+      padding-right: #{$ctr}rem;
+    }
+    $ctr: $ctr + 1;
+  }
+
+  $ctr: 1;
+  @while $ctr <= 12 {
+    .my-#{$ctr} {
+      margin-top: #{$ctr}rem;
+      margin-bottom: #{$ctr}rem;
+    }
+    $ctr: $ctr + 1;
+  }
+  $ctr: 1;
+  @while $ctr <= 12 {
+    .py-#{$ctr} {
+      padding-top: #{$ctr}rem;
+      padding-bottom: #{$ctr}rem;
+    }
+    $ctr: $ctr + 1;
+  }
+
   @each $space-key, $space in map_get($spacing-settings, "spaces") {
+    $ctr: 1;
+    @while $ctr <= 12 {
+      .#{$space}-#{$ctr} {
+        #{$space-key}: #{$ctr}rem;
+      }
+      $ctr: $ctr + 1;
+    }
+
     @each $position-key, $position in map_get($spacing-settings, "positions") {
       $ctr: 1;
-
       @while $ctr <= 12 {
         .#{$space}#{$position}-#{$ctr} {
           #{$space-key}-#{$position-key}: #{$ctr}rem;

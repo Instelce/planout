@@ -14,3 +14,19 @@ h2 {
 h3 {
   font-size: 2.4rem;
 }
+
+h4 {
+  font-size: 1.4rem;
+}
+
+@mixin text-color() {
+  $colors: ("background", "gray", "brown", "white", "blue", "orange", "pink", "red", "green");
+
+  @each $color in $colors {
+    .color-#{$color} {
+      color: rgb(var(--color-#{$color}));
+    }
+  }
+}
+
+@include text-color();

@@ -1,0 +1,11 @@
+@mixin bg-color() {
+  $colors: ("background", "gray", "brown", "white", "blue", "orange", "pink", "red", "green");
+
+  @each $color in $colors {
+    .bg-#{$color} {
+      background-color: rgb(var(--color-#{$color}));
+    }
+  }
+}
+
+@include bg-color();

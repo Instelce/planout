@@ -37,12 +37,13 @@ class InputField extends BaseField
         if ($this->type === self::DATE_TYPE && $this->model->{$this->attr} !== '') {
             $value = date('Y-m-d', strtotime($this->model->{$this->attr}));
         }
-        return sprintf('<input type="%s" id="%s" name="%s" value="%s" class="%s" placeholder="">',
+        return sprintf('<input type="%s" id="%s" name="%s" value="%s" class="%s" placeholder="" list="%s-list">',
             $this->type,
             $this->attr,
             $this->attr,
             $value,
-            $this->model->hasError($this->attr) ? 'is-invalid' : ''
+            $this->model->hasError($this->attr) ? 'is-invalid' : '',
+            $this->attr
         );
     }
 }

@@ -31,10 +31,12 @@ $this->title = $project->name;
         </a>
     </div>
 
-    <div class="grid gc-4 gg-2 mt-2">
+    <div class="grid gc-4 gg-1 mt-2">
         <?php foreach ($members as $member): ?>
-            <div class="">
-                <?php echo $member->role ?>
+            <div class="bg-gray radius-medium py-1 px-2">
+                <h4><?php $user = \app\models\User::findOne(['id' => $member->user]); echo $user->username; ?></h4>
+                <?php echo $member->role; ?>
+                <?php echo $member->job; ?>
             </div>
         <?php endforeach; ?>
     </div>

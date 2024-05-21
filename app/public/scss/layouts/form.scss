@@ -59,13 +59,14 @@ form {
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: .2rem;
 
     transition: transform .2s ease, top .2s ease;
 
     svg {
       stroke: rgb(var(--color-brown));
+      opacity: .6;
     }
 
     &::after {

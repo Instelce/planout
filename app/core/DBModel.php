@@ -88,6 +88,14 @@ abstract class DBModel extends Model
         return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
+    public static function all()
+    {
+        $tableName = static::tableName();
+        $statement = self::prepare("SELECT * FROM $tableName");
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);

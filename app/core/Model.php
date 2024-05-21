@@ -64,13 +64,29 @@ abstract class Model
                 if ($rule_name === self::RULE_UNIQUE) {
                     $className = $rule['class'];
                     $uniqueAttribute = $rule['attribute'] ?? $attr;
+                    $bindError = $rule['bindError'] ?? $attr;
+                    $with = $rule['with'];
+
+                    $where = "$uniqueAttribute = :attr";
+                    if ($with) {
+                        foreach ($with as $a) {
+                            $where .= " AND $a = :$a";
+                        }
+                    }
+
                     $tableName = $className::tableName();
-                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttribute = :attr");
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $where;");
                     $statement->bindValue(":attr", $value);
+                    if ($with) {
+                        foreach ($with as $a) {
+                            $statement->bindValue(":$a", $this->{$a});
+                        }
+                    }
+
                     $statement->execute();
                     $record = $statement->fetchObject();
                     if ($record) {
-                        $this->addErrorForRule($attr, self::RULE_UNIQUE, ['field' => ucfirst($attr)]);
+                        $this->addErrorForRule($bindError, self::RULE_UNIQUE, ['field' => ucfirst($attr)]);
                     }
                 }
             }

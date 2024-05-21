@@ -15,17 +15,33 @@ class Member extends DBModel
     public string $user_email = '';
     
     public function save() {
-        $email = Application::$app->request->getBody()['user_email'];
-        $user = User::findOne(['email' => $email]);
 
+
+
+        $this->user = $user->id;
+        return parent::save();
+    }
+
+    public function validate()
+    {
+        $user = User::findOne(['email' => $this->user_email]);
         if (!$user) {
             $this->addError('user_email', 'An user does not exist with this email address');
             return false;
         }
-
+        if ($user->id === Application::$app->user->id) {
+            $this->addError('user_email', 'Vous êtes déjà membre de ce projet.');
+            return false;
+        }
         $this->user = $user->id;
-        $this->project = Application::$app->request->getRouteParam('pk');        
-        return parent::save();
+        return parent::validate();
+    }
+
+    public function loadData($data)
+    {
+        $this->project = Application::$app->request->getRouteParam('pk');
+
+        parent::loadData($data);
     }
 
     public static function tableName(): string
@@ -53,7 +69,8 @@ class Member extends DBModel
         return [
             'role' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60]],
             'job' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60]],
-            'user_email' => [self::RULE_REQUIRED, self::RULE_MAIL]
+            'user_email' => [self::RULE_REQUIRED, self::RULE_MAIL],
+            'user' => [[self::RULE_UNIQUE, 'class' => self::class, 'with' => ['project'], 'bindError' => 'user_email']]
         ];
     }
 
