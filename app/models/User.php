@@ -10,6 +10,7 @@ class User extends UserModel
     public const STATUS_ACTIVE = 1;
     public const STATUS_DELETED = 2;
 
+    public int $id = -1;
     public string $username = '';
     public string $email = '';
     public int $status = self::STATUS_INACTIVE;

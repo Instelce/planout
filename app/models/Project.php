@@ -17,6 +17,7 @@ class Project extends DBModel
     public function save() {
         $this->user = Application::$app->session->get('user');
         
+        
         return parent::save();
     }
 

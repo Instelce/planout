@@ -12,13 +12,19 @@ class Member extends DBModel
     public string $job = "";
     public int $project = -1;
     public int $user = -1;
+    public string $user_email = '';
     
-
     public function save() {
-        $this->user = Application::$app->session->get('user');
-        
+        $email = Application::$app->request->getBody()['user_email'];
+        $user = User::findOne(['email' => $email]);
 
-        
+        if (!$user) {
+            $this->addError('user_email', 'An user does not exist with this email address');
+            return false;
+        }
+
+        $this->user = $user->id;
+        $this->project = Application::$app->request->getRouteParam('pk');        
         return parent::save();
     }
 
@@ -46,7 +52,8 @@ class Member extends DBModel
     {
         return [
             'role' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60]],
-            'job' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60]]
+            'job' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60]],
+            'user_email' => [self::RULE_REQUIRED, self::RULE_MAIL]
         ];
     }
 }
