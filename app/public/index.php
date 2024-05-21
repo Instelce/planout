@@ -38,6 +38,7 @@ $app->router->post('/projects/new', [ProjectController::class, 'create']);
 $app->router->get('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
 $app->router->post('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
 
+
 // auth routes
 $app->router->get('/connexion', [AuthController::class, 'login']);
 $app->router->post('/connexion', [AuthController::class, 'login']);
