@@ -8,6 +8,7 @@ use app\core\exceptions\NotFoundException;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\Project;
+use app\models\Member;
 
 class ProjectController extends Controller
 {
@@ -29,11 +30,13 @@ class ProjectController extends Controller
 
         $project = Project::findOne(['id' => $pk]);
 
+        $members = Member::find(['project' => $pk]);
+
         if (!$project) {
             throw new NotFoundException();
         }
 
-        return $this->render("projects/details", ['project' => $project]);
+        return $this->render("projects/details", ['project' => $project, 'members' => $members]);
     }
 
     public function create(Request $request)

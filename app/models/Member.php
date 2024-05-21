@@ -56,4 +56,10 @@ class Member extends DBModel
             'user_email' => [self::RULE_REQUIRED, self::RULE_MAIL]
         ];
     }
+
+    public function labels(): array {
+        return [
+            'user_email' => "Email de l'utilisateur"
+        ];
+    }
 }

@@ -2,6 +2,7 @@
 
 /** @var $this \app\core\View */
 /** @var $project \app\models\Project */
+/** @var $members \app\models\Member[] */
 
 $this->title = $project->name;
 
@@ -21,6 +22,18 @@ $this->title = $project->name;
         </button>
     </div>
 </header>
+
+<div>
+    <h3>Membres</h3>
+    <a class="btn" href="/projects/members/new/<?php echo $project->id?>">Ajouter un membre</a>
+    <div class="grid gc-4 gg-2">
+        <?php foreach ($members as $member): ?>
+            <div class="">
+                <?php echo $member->role ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
 
 <div id="m1" class="modal-container">

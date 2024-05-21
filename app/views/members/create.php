@@ -3,6 +3,7 @@
 /** @var $this \app\core\View */
 
 $this->title = "Nouveau membre";
+
 ?>
 
 
