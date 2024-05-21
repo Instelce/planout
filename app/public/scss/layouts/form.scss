@@ -17,6 +17,12 @@ form {
     width: 100%;
   }
 
+  small {
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: inherit;
+  }
+
 }
 
 .field {
@@ -51,7 +57,16 @@ form {
     transform: translateY(-50%);
     cursor: text;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .2rem;
+
     transition: transform .2s ease, top .2s ease;
+
+    svg {
+      stroke: rgb(var(--color-brown));
+    }
 
     &::after {
       content: "";

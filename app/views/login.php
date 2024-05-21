@@ -13,6 +13,7 @@ $this->title = "Connexion";
         <?php echo $form->field($model, 'email') ?>
         <?php echo $form->field($model, 'password')->passwordField() ?>
         <button type="submit" class="btn btn-primary">Connexion</button>
+        <small>Pas encore de compte ? <a href="/inscription" class="link">S'inscrire</a></small>
         <?php \app\core\form\Form::end() ?>
     </div>
 </div>

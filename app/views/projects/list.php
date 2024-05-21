@@ -16,7 +16,7 @@ usort($projects, function ($a, $b) {
 <header class="header header-page">
     <h2>Projets</h2>
     <div>
-        <a href="/projects/new" class="btn rounded">
+        <a href="/projects/new" class="btn btn-rounded">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </a>
     </div>

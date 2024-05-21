@@ -15,7 +15,7 @@ $this->title = "Home";
     
     <div class="grid">
         <?php
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             for ($j = 0; $j < 30; $j++) {
                 echo '<span></span>';
             }

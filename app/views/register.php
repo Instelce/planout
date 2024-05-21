@@ -16,7 +16,8 @@ $this->title = 'Inscription';
             <?php echo $form->field($model, 'email') ?>
             <?php echo $form->field($model, 'password')->passwordField() ?>
             <?php echo $form->field($model, 'password_confirm')->passwordField() ?>
-        <button type="submit" class="btn btn-primary">Soumettre</button>
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+            <small>Vous avez déjà un compte ? <a href="/connexion" class="link">Connectez-vous</a></small>
         <?php \app\core\form\Form::end() ?>
     </div>
 </div>

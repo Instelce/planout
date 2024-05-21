@@ -1,8 +1,8 @@
 <?php
 
 use app\controllers\AuthController;
-use app\controllers\ProjectController;
 use app\controllers\MemberController;
+use app\controllers\ProjectController;
 use app\core\Application;
 use app\controllers\SiteController;
 
@@ -31,16 +31,15 @@ $app->router->get('/', [SiteController::class, 'home']);
 
 
 $app->router->get('/projects', [ProjectController::class, 'list']);
-$app->router->get('/projects/<pk:int>', [ProjectController::class, 'details']);
-$app->router->get('/projects/delete/<pk:int>', [ProjectController::class, 'delete']);
-$app->router->post('/projects/delete/<pk:int>', [ProjectController::class, 'delete']);
+$app->router->get('/projects/[pk:int]', [ProjectController::class, 'details']);
+$app->router->get('/projects/delete/[pk:int]', [ProjectController::class, 'delete']);
+$app->router->post('/projects/delete/[pk:int]', [ProjectController::class, 'delete']);
 $app->router->get('/projects/new', [ProjectController::class, 'create']);
 $app->router->post('/projects/new', [ProjectController::class, 'create']);
-$app->router->get('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
-$app->router->post('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
-$app->router->get('/projects/members/new/<pk:int>', [MemberController::class, 'create']);
-$app->router->post('/projects/members/new/<pk:int>', [MemberController::class, 'create']);
-
+$app->router->get('/projects/edit/[pk:int]', [ProjectController::class, 'update']);
+$app->router->post('/projects/edit/[pk:int]', [ProjectController::class, 'update']);
+$app->router->get('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
+$app->router->post('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
 
 // auth routes
 $app->router->get('/connexion', [AuthController::class, 'login']);
@@ -48,5 +47,6 @@ $app->router->post('/connexion', [AuthController::class, 'login']);
 $app->router->get('/inscription', [AuthController::class, 'register']);
 $app->router->post('/inscription', [AuthController::class, 'register']);
 $app->router->get('/deconnexion', [AuthController::class, 'logout']);
+
 
 $app->run();

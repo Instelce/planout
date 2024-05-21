@@ -52,6 +52,27 @@ a {
   padding: 0 var(--horizontal-marge);
 }
 
+.link {
+  color: rgb(var(--color-brown));
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    background: rgb(var(--color-brown));
+    transition: opacity .2s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
 
 @import "layouts/navbar";
 @import "layouts/header";
