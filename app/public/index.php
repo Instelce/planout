@@ -2,6 +2,7 @@
 
 use app\controllers\AuthController;
 use app\controllers\ProjectController;
+use app\controllers\MemberController;
 use app\core\Application;
 use app\controllers\SiteController;
 
@@ -37,7 +38,8 @@ $app->router->get('/projects/new', [ProjectController::class, 'create']);
 $app->router->post('/projects/new', [ProjectController::class, 'create']);
 $app->router->get('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
 $app->router->post('/projects/edit/<pk:int>', [ProjectController::class, 'update']);
-$app->router->get('/projects/<pk:int>/members/new', [MemberController::class, 'create']);
+$app->router->get('/projects/members/new/<pk:int>', [MemberController::class, 'create']);
+$app->router->post('/projects/members/new/<pk:int>', [MemberController::class, 'create']);
 
 
 // auth routes
