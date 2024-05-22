@@ -53,7 +53,21 @@ class MemberController extends Controller
 
     public function update(Request $request)
     {
-        
+        $pkProject = $request->getRouteParam('pk');
+        $pk = $request->getRouteParam('pkMember');
+        $member = Member::findOne(['id' => $pk]);
+
+        if ($request->isPost()) {
+            $member->loadData($request->getBody());
+
+            if ($member->validate() && $member->update()) {
+                Application::$app->session->setFlash('success', "$member->name à bien été mit à jour");
+                Application::$app->response->redirect("/projects/$pkProject");
+                exit;
+            }
+        }
+
+        return $this->render('member/update', ['model' => $member]);
     }
 
     public function delete(Request $request)

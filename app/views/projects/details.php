@@ -67,6 +67,7 @@ $this->title = $project->name;
                     <div><span>Role</span><span><?php echo $member->role; ?></span></div>
                     <div><span>Job</span><span><?php echo $member->job; ?></span></div>
                     <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
+                    <button onclick='toggleModal(4)'>Modifier</button>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -140,6 +141,23 @@ $this->title = $project->name;
         <div class="buttons">
             <a class="target btn btn-danger" href="">Oui</a>
             <button onclick="toggleModal(3)" class="btn btn-gray">Non</button>
+        </div>
+    </div>
+</div>
+
+<div id="m4" class="modal-container">
+    <div class="modal">
+        <h3>Informations</h3>
+        <div class="buttons">
+            <?php $form = \app\core\form\Form::begin('', 'post'); ?>
+                <input type="hidden" name="formId" value="updateMember">
+                <?php echo $form->field($member, 'role') ?>
+                <?php echo $form->field($member, 'job') ?>
+                <div class="buttons">
+                    <button type="submit" class="btn">Confirmer</button>
+                    <button onclick="toggleModal(4)" class="btn btn-gray">Annuler</button>
+                </div>
+            <?php \app\core\form\Form::end(); ?>
         </div>
     </div>
 </div>
