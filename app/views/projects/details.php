@@ -10,7 +10,7 @@ $this->title = $project->name;
 
 ?>
 
-<header class="header header-page">
+<header class="header header-page mb-2">
     <div>
         <h2><?php echo $project->name ?></h2>
         <!--        <p>--><?php //echo $project->description ?><!--</p>-->
@@ -39,7 +39,7 @@ $this->title = $project->name;
 </header>
 
 <!-- Member section -->
-<section>
+<section class="mb-2">
     <div class="header header-section">
         <h3>Membres</h3>
         <a href="/projects/<?php echo $project->id ?>/members/new"
@@ -53,16 +53,20 @@ $this->title = $project->name;
             </svg>
         </a>
     </div>
+    <?php if (count($members) === 0): ?>
+        <div class="center mt-2">
+            <p>Aucun membre dans ce projet.</p>
+        </div>
+    <?php endif; ?>
     <div class="grid gc-4 gg-1 mt-2">
         <?php foreach ($members as $member): ?>
             <div class="member-card">
-                <h4><?php $user = \app\models\User::findOne(['id' => $member->user]);
+                <h4 class="username"><?php $user = \app\models\User::findOne(['id' => $member->user]);
                     echo $user->username; ?></h4>
                 <div class="attributes">
-                    <span>Role / <?php echo $member->role; ?></span>
-                    <span>Job /  <?php echo $member->job; ?></span>
-                    <button onclick='toggleModal(3, <?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>, "target")'>Supprimer</button>
-
+                    <div><span>Role</span><span><?php echo $member->role; ?></span></div>
+                    <div><span>Job</span><span><?php echo $member->job; ?></span></div>
+                    <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -96,7 +100,7 @@ $this->title = $project->name;
     <?php endif; ?>
     <div class="grid gc-1 gg-1 mt-2">
         <?php foreach ($kanbanBoards as $board): ?>
-            <a href="" class="px-2 py-1 bg-gray radius-medium">
+            <a href="/projects/<?php echo $project->id ?>/kanban/<?php echo $board->id ?>" class="px-2 py-1 bg-gray radius-medium">
                 <h4><?php echo $board->name ?></h4>
             </a>
         <?php endforeach; ?>
@@ -134,8 +138,7 @@ $this->title = $project->name;
     <div class="modal">
         <h3>Êtes vous sûr ?</h3>
         <div class="buttons">
-            <a class="target" href="" >
-               class="btn btn-danger">Oui</a>
+            <a class="target btn btn-danger" href="">Oui</a>
             <button onclick="toggleModal(3)" class="btn btn-gray">Non</button>
         </div>
     </div>

@@ -39,12 +39,14 @@ class Router
         // check if path has params like /projets/<pk:int> and get the value (/projets/1 => 1)
         $selectedRoute = null;
         foreach ($this->routes[$method] as $route => $routeCallback) {
+            $routeCheck = "";
+            $hasMultipleParams = preg_match_all('/\[(\w+):(\w+)]/', $route, $matches);
             $params = explode('/', $route);
             $pathParts = explode('/', $path);
 
             if (count($params) === count($pathParts)) {
                 foreach ($params as $i => $paramPart) {
-                    if (preg_match('[(\w+):(\w+)]', $paramPart, $matches)) {
+                    if (preg_match('/\[(\w+):(\w+)]/', $paramPart, $matches)) {
                         $pathStart = implode('/', array_slice($pathParts, 0, $i));
                         $routeStart = implode('/', array_slice($params, 0, $i));
                         $paramName = $matches[1];
@@ -52,14 +54,25 @@ class Router
                         $pathEnd = implode('/', array_slice($pathParts, $i + 1));
                         $routeEnd = implode('/', array_slice($params, $i + 1));
 
-                        if ($paramType === 'int' && $pathStart === $routeStart && $pathEnd === $routeEnd) {
+                        if ($paramType === 'int') {
                             if (is_numeric($pathParts[$i])) {
-                                $selectedRoute = $route;
                                 $this->request->routeParams[$paramName] = (int)$pathParts[$i];
+                                $routeCheck .= "/" . $pathParts[$i];
+                                if ($routeCheck === $path) {
+                                    $selectedRoute = $route;
+                                }
                             }
+                        }
+                    } else {
+                        if ($paramPart !== '') {
+                            $routeCheck .= "/" . $paramPart;
                         }
                     }
                 }
+            }
+
+            if ($routeCheck === $path) {
+                $selectedRoute = $route;
             }
         }
 
