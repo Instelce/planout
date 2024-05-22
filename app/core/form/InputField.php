@@ -11,6 +11,7 @@ class InputField extends BaseField
     public const PASSWORD_TYPE = 'password';
     public const NUMBER_TYPE = 'number';
     public const DATE_TYPE = 'date';
+    public const HIDDEN_TYPE = 'hidden';
 
     public string $type;
 
@@ -28,6 +29,11 @@ class InputField extends BaseField
 
     public function dateField() {
         $this->type = self::DATE_TYPE;
+        return $this;
+    }
+
+    public function hiddenField() {
+        $this->type = self::HIDDEN_TYPE;
         return $this;
     }
 

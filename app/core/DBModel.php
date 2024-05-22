@@ -10,7 +10,10 @@ abstract class DBModel extends Model
     abstract public function attributes(): array;
     abstract public function canUpdateAttributes(): array;
 
-    abstract public static function pk(): string;
+    public static function pk(): string
+    {
+        return 'id';
+    }
 
     public function save()
     {

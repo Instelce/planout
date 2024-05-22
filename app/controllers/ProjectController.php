@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\exceptions\NotFoundException;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
+use app\models\KanbanBoard;
 use app\models\Project;
 use app\models\Member;
 
@@ -27,16 +28,25 @@ class ProjectController extends Controller
     public function details(Request $request)
     {
         $pk = $request->getRouteParam('pk');
-
         $project = Project::findOne(['id' => $pk]);
+        if (!$project) throw new NotFoundException();
 
         $members = Member::find(['project' => $pk]);
+        $kanbanBoard = new KanbanBoard();
+        $kanbanBoards = KanbanBoard::find(['project' => $pk]);
 
-        if (!$project) {
-            throw new NotFoundException();
+        if ($request->isPost()) {
+            $body = $request->getBody();
+            if ($body['formId'] === 'createKanbanBoard') {
+                $kanbanBoard->loadData($body);
+                if ($kanbanBoard->validate() && $kanbanBoard->save()) {
+                    Application::$app->response->redirect(Application::$app->request->getPath());
+                    exit;
+                }
+            }
         }
 
-        return $this->render("projects/details", ['project' => $project, 'members' => $members]);
+        return $this->render("projects/details", ['project' => $project, 'members' => $members, 'kanbanBoard' => $kanbanBoard, 'kanbanBoards' => $kanbanBoards]);
     }
 
     public function create(Request $request)

@@ -13,14 +13,6 @@ class Member extends DBModel
     public int $project = -1;
     public int $user = -1;
     public string $user_email = '';
-    
-    public function save() {
-
-
-
-        $this->user = $user->id;
-        return parent::save();
-    }
 
     public function validate()
     {
