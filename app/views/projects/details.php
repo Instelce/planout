@@ -61,6 +61,8 @@ $this->title = $project->name;
                 <div class="attributes">
                     <span>Role / <?php echo $member->role; ?></span>
                     <span>Job /  <?php echo $member->job; ?></span>
+                    <button onclick='toggleModal(3, <?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>, "target")'>Supprimer</button>
+
                 </div>
             </div>
         <?php endforeach; ?>
@@ -125,5 +127,16 @@ $this->title = $project->name;
                 </button>
             </div>
         <?php \app\core\form\Form::end(); ?>
+    </div>
+</div>
+
+<div id="m3" class="modal-container">
+    <div class="modal">
+        <h3>Êtes vous sûr ?</h3>
+        <div class="buttons">
+            <a class="target" href="" >
+               class="btn btn-danger">Oui</a>
+            <button onclick="toggleModal(3)" class="btn btn-gray">Non</button>
+        </div>
     </div>
 </div>

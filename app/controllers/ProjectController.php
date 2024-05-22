@@ -45,7 +45,7 @@ class ProjectController extends Controller
                 }
             }
         }
-
+        
         return $this->render("projects/details", ['project' => $project, 'members' => $members, 'kanbanBoard' => $kanbanBoard, 'kanbanBoards' => $kanbanBoards]);
     }
 

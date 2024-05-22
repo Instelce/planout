@@ -41,6 +41,8 @@ $app->router->get('/projects/edit/[pk:int]', [ProjectController::class, 'update'
 $app->router->post('/projects/edit/[pk:int]', [ProjectController::class, 'update']);
 $app->router->get('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
 $app->router->post('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
+$app->router->get('/projects/[pk:int]/members/delete/[pkMember:int]', [MemberController::class, 'delete']);
+$app->router->post('/projects/[pk:int]/members/delete/[pkMember:int]', [MemberController::class, 'delete']);
 
 // auth routes
 $app->router->get('/connexion', [AuthController::class, 'login']);

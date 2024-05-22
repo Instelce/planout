@@ -58,6 +58,18 @@ class MemberController extends Controller
 
     public function delete(Request $request)
     {
-        
+        $confirm = $request->getParam('confirm');
+        $pk = $request->getRouteParam('pkMember');
+        $member = Member::findOne(['id' => $pk]);
+
+        if ($confirm || $request->isPost()) {
+            if ($member->destroy()) {
+                Application::$app->session->setFlash('success', "$memnber->name à bien été supprimé");
+                Application::$app->response->redirect("/projects/$member->project");
+                exit;
+            }
+        }
+
+        return $this->render('projects/delete', ['model' => $member]);
     }
 }
