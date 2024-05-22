@@ -67,7 +67,7 @@ $this->title = $project->name;
                     <div><span>Role</span><span><?php echo $member->role; ?></span></div>
                     <div><span>Job</span><span><?php echo $member->job; ?></span></div>
                     <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
-                    <button onclick='toggleModal(4)'>Modifier</button>
+                    <button onclick='toggleModal(4, "<?php echo "/projects/$project->id?memberId=$member->id" ?>", "target")'>Modifier</button>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -151,10 +151,10 @@ $this->title = $project->name;
         <div class="buttons">
             <?php $form = \app\core\form\Form::begin('', 'post'); ?>
                 <input type="hidden" name="formId" value="updateMember">
-                <?php echo $form->field($member, 'role') ?>
-                <?php echo $form->field($member, 'job') ?>
+                <?php echo $form->field(MemberController::returnIdMember(Application::$app->$request->getParam('memberId')), 'role') ?>
+                <?php echo $form->field(MemberController::returnIdMember(Application::$app->$request->getParam('memberId')), 'job') ?>
                 <div class="buttons">
-                    <button type="submit" class="btn">Confirmer</button>
+                    <a class="btn" href="">Confirmer</a>
                     <button onclick="toggleModal(4)" class="btn btn-gray">Annuler</button>
                 </div>
             <?php \app\core\form\Form::end(); ?>

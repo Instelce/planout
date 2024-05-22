@@ -34,6 +34,9 @@ class ProjectController extends Controller
         $members = Member::find(['project' => $pk]);
         $kanbanBoard = new KanbanBoard();
         $kanbanBoards = KanbanBoard::find(['project' => $pk]);
+        
+        $member = MemberController::returnIdMember($request);
+
 
         if ($request->isPost()) {
             $body = $request->getBody();
@@ -44,7 +47,18 @@ class ProjectController extends Controller
                     exit;
                 }
             }
+
+            if ($body['formId'] === 'updateMember') {
+                $member->loadData($body);
+                if ($member->validate() && $member->update()) {
+                    Application::$app->session->setFlash('success', "$member->name à bien été mit à jour");
+                    Application::$app->response->redirect(Application::$app->request->getPath());
+                    exit;
+                }
+            }
+
         }
+
         
         return $this->render("projects/details", ['project' => $project, 'members' => $members, 'kanbanBoard' => $kanbanBoard, 'kanbanBoards' => $kanbanBoards]);
     }
