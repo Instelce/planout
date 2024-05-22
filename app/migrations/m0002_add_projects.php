@@ -14,7 +14,7 @@ class m0002_add_projects
             deadline TIMESTAMP NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             user INT NOT NULL,
-            FOREIGN KEY (user) REFERENCES users(id)
+            FOREIGN KEY (user) REFERENCES users(id) ON DELETE CASCADE
         ) ENGINE=INNODB;";
         $db->pdo->exec($sql);
     }

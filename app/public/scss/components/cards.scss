@@ -78,11 +78,12 @@
   }
 }
 
-
 .member-card {
+  height: fit-content;
   //padding: 1rem 2rem;
   //padding: 0 2rem;
   overflow: hidden;
+  position: relative;
 
   display: flex;
   justify-content: space-between;
@@ -98,11 +99,19 @@
 
   .attributes {
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
     min-width: 40%;
     //padding: .5rem 1rem;
 
+    transition: opacity .2s ease;
+
+    & > div:first-child {
+      width: 110%;
+    }
+
     & > div {
+      width: 100%;
       padding: .5rem 1rem;
       background: rgb(var(--color-background));
       border-radius: 5px;
@@ -119,6 +128,46 @@
       &:not(:last-child) {
         border-bottom: 2px solid rgb(var(--color-gray));
       }
+    }
+  }
+
+  .buttons {
+    height: 100%;
+    padding: .5rem .5rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+
+    border-radius: 5px;
+    background: rgb(var(--color-background));
+
+    transition: opacity .3s ease;
+
+    @for $i from 1 through 2 {
+      a:nth-child(#{$i}), button:nth-child(#{$i}) {
+        transition: transform .3s ease;
+        transform: translateY(calc(#{$i} * 10px));
+      }
+    }
+  }
+
+  &:hover {
+    .buttons {
+      opacity: 1;
+
+      a, button {
+        transform: translateY(0);
+      }
+    }
+
+    .attributes {
+      opacity: 0;
     }
   }
 

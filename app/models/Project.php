@@ -48,4 +48,8 @@ class Project extends DBModel
             'deadline' => [self::RULE_REQUIRED]
         ];
     }
+
+    public function isOwned() {
+        return $this->user === Application::$app->user->id;
+    }
 }

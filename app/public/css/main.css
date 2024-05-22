@@ -269,6 +269,10 @@ th {
   height: 100vh;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .radius-medium {
   border-radius: var(--radius);
 }
@@ -1440,12 +1444,37 @@ input[type=submit].btn-danger {
   width: 100%;
   padding: 1rem 1.5rem;
   border-radius: var(--radius);
+  overflow: hidden;
+  animation: appear 0.3s ease-in-out, disappear 0.3s ease-in-out forwards 5s;
 }
 .alert.alert-success {
   background: rgba(var(--color-green), 0.2);
   border: 1px solid rgb(var(--color-green));
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes disappear {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%);
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
 .modal-container {
   width: 100%;
   height: 100vh;
@@ -1554,7 +1583,9 @@ input[type=submit].btn-danger {
 }
 
 .member-card {
+  height: fit-content;
   overflow: hidden;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1567,10 +1598,16 @@ input[type=submit].btn-danger {
 }
 .member-card .attributes {
   display: flex;
+  align-items: flex-end;
   flex-direction: column;
   min-width: 40%;
+  transition: opacity 0.2s ease;
+}
+.member-card .attributes > div:first-child {
+  width: 110%;
 }
 .member-card .attributes > div {
+  width: 100%;
   padding: 0.5rem 1rem;
   background: rgb(var(--color-background));
   border-radius: 5px;
@@ -1585,30 +1622,137 @@ input[type=submit].btn-danger {
 .member-card .attributes > div:not(:last-child) {
   border-bottom: 2px solid rgb(var(--color-gray));
 }
+.member-card .buttons {
+  height: 100%;
+  padding: 0.5rem 0.5rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  border-radius: 5px;
+  background: rgb(var(--color-background));
+  transition: opacity 0.3s ease;
+}
+.member-card .buttons a:nth-child(1), .member-card .buttons button:nth-child(1) {
+  transition: transform 0.3s ease;
+  transform: translateY(calc(1 * 10px));
+}
+.member-card .buttons a:nth-child(2), .member-card .buttons button:nth-child(2) {
+  transition: transform 0.3s ease;
+  transform: translateY(calc(2 * 10px));
+}
+.member-card:hover .buttons {
+  opacity: 1;
+}
+.member-card:hover .buttons a, .member-card:hover .buttons button {
+  transform: translateY(0);
+}
+.member-card:hover .attributes {
+  opacity: 0;
+}
+
+.kanban-board-card {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  background: rgb(var(--color-gray));
+  border-radius: var(--radius);
+  border: 2px solid rgb(var(--color-gray));
+  transition: 0.2s border ease, 0.2s background ease;
+}
+.kanban-board-card:hover {
+  background: rgb(var(--color-background));
+  border-color: rgb(var(--color-gray));
+}
 
 .kanban-grid {
   width: auto;
+  min-height: 30rem;
+  height: 60vh;
+  padding: 1rem;
   display: flex;
   gap: 2rem;
   overflow-x: scroll;
   margin-top: 2rem;
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(-45deg, rgba(var(--color-gray), 0.4), rgba(var(--color-gray), 0.4) 5px, transparent 5px, transparent 10px);
+}
+.kanban-grid::-webkit-scrollbar {
+  height: 0.5rem;
+}
+.kanban-grid::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-gray));
+  border-radius: 1rem;
 }
 
+.new-column-form,
 .kanban-column {
-  min-height: 60vh;
   min-width: 30%;
   overflow: hidden;
-  display: flex;
   flex-direction: column;
-  background: rgba(var(--color-gray), 0.6);
+  background: #373737;
   border-radius: var(--radius);
 }
+.new-column-form > header,
 .kanban-column > header {
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: rgb(var(--color-gray));
+}
+.new-column-form.card-over,
+.kanban-column.card-over {
+  box-shadow: 0 0 0 2px rgb(var(--color-brown));
+}
+
+.kanban-column-content {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kanban-card {
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  background: rgb(var(--color-gray));
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.kanban-card.dragging {
+  color: rgb(var(--color-background));
+  background: rgb(var(--color-brown));
+}
+
+.new-column-form {
+  display: none;
+}
+.new-column-form.show {
+  display: flex;
+}
+
+.new-column-button {
+  min-width: 10rem;
+  height: auto;
+  display: block;
+}
+.new-column-button.hide {
+  display: none;
+}
+
+.new-card-form {
+  display: none;
+  gap: 1rem;
+}
+.new-card-form.show {
+  display: flex;
 }
 
 h1, h2, h3, h4 {

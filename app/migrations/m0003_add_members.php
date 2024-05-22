@@ -13,8 +13,8 @@ class m0003_add_members
             job VARCHAR(60) NOT NULL,
             project INT NOT NULL,
             user INT NOT NULL,
-            FOREIGN KEY (project) REFERENCES projects(id),
-            FOREIGN KEY (user) REFERENCES users(id)
+            FOREIGN KEY (project) REFERENCES projects(id) ON DELETE CASCADE,
+            FOREIGN KEY (user) REFERENCES users(id) ON DELETE CASCADE
         ) ENGINE=INNODB;";
         $db->pdo->exec($sql);
     }

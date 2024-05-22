@@ -17,16 +17,18 @@ class Member extends DBModel
 
     public function validate()
     {
-        $user = User::findOne(['email' => $this->user_email]);
-        if (!$user) {
-            $this->addError('user_email', 'An user does not exist with this email address');
-            return false;
+        if ($this->user_email) {
+            $user = User::findOne(['email' => $this->user_email]);
+            if (!$user) {
+                $this->addError('user_email', 'An user does not exist with this email address');
+                return false;
+            }
+            if ($user->id === Application::$app->user->id) {
+                $this->addError('user_email', 'Vous êtes déjà membre de ce projet.');
+                return false;
+            }
+            $this->user = $user->id;
         }
-        if ($user->id === Application::$app->user->id) {
-            $this->addError('user_email', 'Vous êtes déjà membre de ce projet.');
-            return false;
-        }
-        $this->user = $user->id;
         return parent::validate();
     }
 

@@ -76,10 +76,11 @@ class MemberController extends Controller
         $confirm = $request->getParam('confirm');
         $pk = $request->getRouteParam('pkMember');
         $member = Member::findOne(['id' => $pk]);
+        $user = User::findOne(['id' => $member->user]);
 
         if ($confirm || $request->isPost()) {
             if ($member->destroy()) {
-                Application::$app->session->setFlash('success', "$memnber->name à bien été supprimé");
+                Application::$app->session->setFlash('success', "$user->username à bien été supprimé");
                 Application::$app->response->redirect("/projects/$member->project");
                 exit;
             }

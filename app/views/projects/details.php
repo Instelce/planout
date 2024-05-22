@@ -20,25 +20,27 @@ $this->title = $project->name;
         <!--        <p>--><?php //echo $project->description ?><!--</p>-->
     </div>
     <div class="flex gg-1">
-        <a href="/projects/edit/<?php echo $project->id ?>"
-           class="btn btn-rounded">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                 class="feather feather-edit">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-            </svg>
-        </a>
-        <button class="btn btn-danger btn-rounded" onclick="toggleModal(1)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                 class="feather feather-trash">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-            </svg>
-        </button>
+        <?php if ($project->isOwned()): ?>
+            <a href="/projects/edit/<?php echo $project->id ?>"
+               class="btn btn-rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-edit">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+            </a>
+            <button class="btn btn-danger btn-rounded" onclick="toggleModal(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-trash">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+            </button>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -64,15 +66,16 @@ $this->title = $project->name;
     <?php endif; ?>
     <div class="grid gc-4 gg-1 mt-2">
         <?php foreach ($members as $member): ?>
-<!--            --><?php //echo Application::$app->request->getParam('memberId') . " " . $member->id ?>
+
             <?php if (Application::$app->request->getParam('memberId') == $member->id): ?>
                 <?php $form = \app\core\form\Form::begin('', 'post'); ?>
                 <input type="hidden" name="formId" value="updateMember">
+                <input type="hidden" name="id" value="<?php echo $member->id ?>">
                 <?php echo $form->field(Member::returnIdMember(Application::$app->request), 'role') ?>
                 <?php echo $form->field(Member::returnIdMember(Application::$app->request), 'job') ?>
-                <div class="buttons">
-                    <button type="submit">Confirmer</button>
-                    <button class="btn btn-gray">Annuler</button>
+                <div class="flex gg-1">
+                    <button class="btn" type="submit">Confirmer</button>
+                    <a class="btn btn-gray w-full" href="/projects/<?php echo $project->id ?>">Annuler</a>
                 </div>
                 <?php \app\core\form\Form::end(); ?>
             <?php else: ?>
@@ -82,8 +85,14 @@ $this->title = $project->name;
                     <div class="attributes">
                         <div><span>Role</span><span><?php echo $member->role; ?></span></div>
                         <div><span>Job</span><span><?php echo $member->job; ?></span></div>
-                        <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
-                        <a href="<?php echo "/projects/$project->id?memberId=$member->id" ?>">Modifier</a>
+                    </div>
+                    <div class="buttons">
+                        <a class="btn btn-small" href="<?php echo "/projects/$project->id?memberId=$member->id" ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        </a>
+                        <button class="btn btn-small btn-danger" onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
                     </div>
                 </div>
             <?php endif; ?>
@@ -120,8 +129,14 @@ $this->title = $project->name;
     <?php endif; ?>
     <div class="grid gc-1 gg-1 mt-2">
         <?php foreach ($kanbanBoards as $board): ?>
-            <a href="/projects/<?php echo $project->id ?>/kanban/<?php echo $board->id ?>" class="px-2 py-1 bg-gray radius-medium">
+            <a href="/projects/<?php echo $project->id ?>/kanban/<?php echo $board->id ?>" class="kanban-board-card">
                 <h4><?php echo $board->name ?></h4>
+
+                <div>
+                    <span>
+                        <?php echo count($board->getCards()) . ' cartes' ?>
+                    </span>
+                </div>
             </a>
         <?php endforeach; ?>
     </div>
