@@ -10,6 +10,7 @@ use app\core\Request;
 use app\models\KanbanBoard;
 use app\models\Project;
 use app\models\Member;
+use app\models\User;
 
 class ProjectController extends Controller
 {
@@ -35,8 +36,7 @@ class ProjectController extends Controller
         $kanbanBoard = new KanbanBoard();
         $kanbanBoards = KanbanBoard::find(['project' => $pk]);
         
-        $member = MemberController::returnIdMember($request);
-
+        $member = new Member();
 
         if ($request->isPost()) {
             $body = $request->getBody();
@@ -49,17 +49,18 @@ class ProjectController extends Controller
             }
 
             if ($body['formId'] === 'updateMember') {
+                $member->id = $request->getParam('memberId');
                 $member->loadData($body);
-                if ($member->validate() && $member->update()) {
-                    Application::$app->session->setFlash('success', "$member->name à bien été mit à jour");
+                if ($member->update()) {
+                    $member = Member::findOne(['id' => $member->id]);
+                    $user = User::findOne(['id' => $member->user]);
+                    Application::$app->session->setFlash('success', "$user->username à bien été mit à jour");
                     Application::$app->response->redirect(Application::$app->request->getPath());
                     exit;
                 }
             }
-
         }
 
-        
         return $this->render("projects/details", ['project' => $project, 'members' => $members, 'kanbanBoard' => $kanbanBoard, 'kanbanBoards' => $kanbanBoards]);
     }
 

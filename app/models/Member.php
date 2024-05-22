@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Application;
 use app\core\DBModel;
+use app\core\Request;
 
 class Member extends DBModel
 {
@@ -70,5 +71,11 @@ class Member extends DBModel
         return [
             'user_email' => "Email de l'utilisateur"
         ];
+    }
+
+    public static function returnIdMember(Request $request) {
+        $pk = $request->getParam('memberId');
+        $member = Member::findOne(['id' => $pk]);
+        return $member;
     }
 }

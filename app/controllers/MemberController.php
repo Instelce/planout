@@ -51,12 +51,6 @@ class MemberController extends Controller
         return $this->render("members/create", ['model' => $member, 'users' => $users]);
     }
 
-    public static function returnIdMember(Request $request){
-        $pk = $request->getRouteParam('pkMember');
-        $member = Member::findOne(['id' => $pk]);
-        return $member;
-    }
-
     //unused
     public function update(Request $request)
     {

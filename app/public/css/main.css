@@ -1224,16 +1224,16 @@ body > footer .center {
   margin-top: 2rem;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-form button,
-form input[type=submit] {
+.form button,
+.form input[type=submit] {
   width: 100%;
 }
-form small {
+.form small {
   font-size: 0.9rem;
   text-align: center;
   font-family: inherit;
@@ -1241,9 +1241,9 @@ form small {
 
 .field {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 .field:has(input.is-invalid) {
   gap: 1rem;
@@ -1413,6 +1413,10 @@ input[type=submit].sb {
 input[type=submit].btn-rounded {
   padding: 1rem;
   border-radius: 1000px;
+}
+.btn.btn-small,
+input[type=submit].btn-small {
+  padding: 0 1rem;
 }
 .btn.btn-small.btn-rounded,
 input[type=submit].btn-small.btn-rounded {

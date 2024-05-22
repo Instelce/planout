@@ -8,7 +8,7 @@ class Form
 {
     public static function begin($action, $method)
     {
-        echo "<form action='$action' method='$method'>";
+        echo "<form class='form' action='$action' method='$method'>";
         return new Form();
     }
 

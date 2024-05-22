@@ -2,9 +2,13 @@
 
 /** @var $this \app\core\View */
 /** @var $project \app\models\Project */
-/** @var $members \app\models\Member[] */
+/** @var $members Member[] */
 /** @var $kanbanBoard \app\models\KanbanBoard */
 /** @var $kanbanBoards \app\models\KanbanBoard[] */
+
+use app\controllers\MemberController;
+use app\core\Application;
+use app\models\Member;
 
 $this->title = $project->name;
 
@@ -60,17 +64,32 @@ $this->title = $project->name;
     <?php endif; ?>
     <div class="grid gc-4 gg-1 mt-2">
         <?php foreach ($members as $member): ?>
-            <div class="member-card">
-                <h4 class="username"><?php $user = \app\models\User::findOne(['id' => $member->user]);
-                    echo $user->username; ?></h4>
-                <div class="attributes">
-                    <div><span>Role</span><span><?php echo $member->role; ?></span></div>
-                    <div><span>Job</span><span><?php echo $member->job; ?></span></div>
-                    <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
-                    <button onclick='toggleModal(4, "<?php echo "/projects/$project->id?memberId=$member->id" ?>", "target")'>Modifier</button>
+<!--            --><?php //echo Application::$app->request->getParam('memberId') . " " . $member->id ?>
+            <?php if (Application::$app->request->getParam('memberId') == $member->id): ?>
+                <?php $form = \app\core\form\Form::begin('', 'post'); ?>
+                <input type="hidden" name="formId" value="updateMember">
+                <?php echo $form->field(Member::returnIdMember(Application::$app->request), 'role') ?>
+                <?php echo $form->field(Member::returnIdMember(Application::$app->request), 'job') ?>
+                <div class="buttons">
+                    <button type="submit">Confirmer</button>
+                    <button class="btn btn-gray">Annuler</button>
                 </div>
-            </div>
+                <?php \app\core\form\Form::end(); ?>
+            <?php else: ?>
+                <div class="member-card">
+                    <h4 class="username"><?php $user = \app\models\User::findOne(['id' => $member->user]);
+                        echo $user->username; ?></h4>
+                    <div class="attributes">
+                        <div><span>Role</span><span><?php echo $member->role; ?></span></div>
+                        <div><span>Job</span><span><?php echo $member->job; ?></span></div>
+                        <button onclick='toggleModal(3, "<?php echo "/projects/$project->id/members/delete/$member->id?confirm=true" ?>", "target")'>Supprimer</button>
+                        <a href="<?php echo "/projects/$project->id?memberId=$member->id" ?>">Modifier</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
         <?php endforeach; ?>
+
     </div>
 </section>
 
@@ -145,19 +164,3 @@ $this->title = $project->name;
     </div>
 </div>
 
-<div id="m4" class="modal-container">
-    <div class="modal">
-        <h3>Informations</h3>
-        <div class="buttons">
-            <?php $form = \app\core\form\Form::begin('', 'post'); ?>
-                <input type="hidden" name="formId" value="updateMember">
-                <?php echo $form->field(MemberController::returnIdMember(Application::$app->$request->getParam('memberId')), 'role') ?>
-                <?php echo $form->field(MemberController::returnIdMember(Application::$app->$request->getParam('memberId')), 'job') ?>
-                <div class="buttons">
-                    <a class="btn" href="">Confirmer</a>
-                    <button onclick="toggleModal(4)" class="btn btn-gray">Annuler</button>
-                </div>
-            <?php \app\core\form\Form::end(); ?>
-        </div>
-    </div>
-</div>

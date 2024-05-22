@@ -49,6 +49,7 @@ $app->router->post('/projects/[pk:int]/members/delete/[pkMember:int]', [MemberCo
 
 // kanban boards routes
 $app->router->get('/projects/[pk:int]/kanban/[pkKanbanBoard:int]', [KanbanController::class, 'details']);
+$app->router->post('/projects/[pk:int]/kanban/[pkKanbanBoard:int]', [KanbanController::class, 'details']);
 
 // auth routes
 $app->router->get('/connexion', [AuthController::class, 'login']);
