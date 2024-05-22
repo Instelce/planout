@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\AuthController;
+use app\controllers\KanbanController;
 use app\controllers\MemberController;
 use app\controllers\ProjectController;
 use app\core\Application;
@@ -29,7 +30,7 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 // dans Router.resolve() call_user_func() essaye d'éxécuter la fonction 'handleContact' qui est dans la classe SiteController
 
-
+// projects routes
 $app->router->get('/projects', [ProjectController::class, 'list']);
 $app->router->get('/projects/[pk:int]', [ProjectController::class, 'details']);
 $app->router->post('/projects/[pk:int]', [ProjectController::class, 'details']);
@@ -39,10 +40,15 @@ $app->router->get('/projects/new', [ProjectController::class, 'create']);
 $app->router->post('/projects/new', [ProjectController::class, 'create']);
 $app->router->get('/projects/edit/[pk:int]', [ProjectController::class, 'update']);
 $app->router->post('/projects/edit/[pk:int]', [ProjectController::class, 'update']);
+
+// members routes
 $app->router->get('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
 $app->router->post('/projects/[pk:int]/members/new', [MemberController::class, 'create']);
 $app->router->get('/projects/[pk:int]/members/delete/[pkMember:int]', [MemberController::class, 'delete']);
 $app->router->post('/projects/[pk:int]/members/delete/[pkMember:int]', [MemberController::class, 'delete']);
+
+// kanban boards routes
+$app->router->get('/projects/[pk:int]/kanban/[pkKanbanBoard:int]', [KanbanController::class, 'details']);
 
 // auth routes
 $app->router->get('/connexion', [AuthController::class, 'login']);

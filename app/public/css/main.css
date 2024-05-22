@@ -1199,7 +1199,6 @@ a {
 }
 .header.header-section {
   padding: 1rem 0;
-  margin-top: 2rem;
   border-top: 0;
   border-bottom: 1px solid rgb(var(--color-gray));
 }
@@ -1551,19 +1550,63 @@ input[type=submit].btn-danger {
 }
 
 .member-card {
-  padding: 0 2rem;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgb(var(--color-gray));
   border-radius: var(--radius);
+  border: 2px solid rgb(var(--color-gray));
+}
+.member-card .username {
+  padding: 1rem 2rem;
 }
 .member-card .attributes {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
-  gap: 0.5rem;
+  min-width: 40%;
 }
+.member-card .attributes > div {
+  padding: 0.5rem 1rem;
+  background: rgb(var(--color-background));
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.member-card .attributes > div span:first-child {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.member-card .attributes > div:not(:last-child) {
+  border-bottom: 2px solid rgb(var(--color-gray));
+}
+
+.kanban-grid {
+  width: auto;
+  display: flex;
+  gap: 2rem;
+  overflow-x: scroll;
+  margin-top: 2rem;
+}
+
+.kanban-column {
+  min-height: 60vh;
+  min-width: 30%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: rgba(var(--color-gray), 0.6);
+  border-radius: var(--radius);
+}
+.kanban-column > header {
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(var(--color-gray));
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-fancy);
 }

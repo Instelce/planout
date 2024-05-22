@@ -81,7 +81,8 @@
 
 .member-card {
   //padding: 1rem 2rem;
-  padding: 0 2rem;
+  //padding: 0 2rem;
+  overflow: hidden;
 
   display: flex;
   justify-content: space-between;
@@ -89,15 +90,35 @@
 
   background: rgb(var(--color-gray));
   border-radius: var(--radius);
+  border: 2px solid rgb(var(--color-gray));
+
+  .username {
+    padding: 1rem 2rem;
+  }
 
   .attributes {
     display: flex;
     flex-direction: column;
-    padding: 1rem 0;
-    gap: .5rem;
+    min-width: 40%;
+    //padding: .5rem 1rem;
 
-    span {
+    & > div {
+      padding: .5rem 1rem;
+      background: rgb(var(--color-background));
+      border-radius: 5px;
 
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      span:first-child {
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 2px solid rgb(var(--color-gray));
+      }
     }
   }
 
