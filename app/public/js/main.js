@@ -65,6 +65,49 @@ containers.forEach(container => {
     }
 
     container.classList.remove('card-over');
+
+    let cardId = draggable.getAttribute('data-id');
+    let projectId = draggable.getAttribute('data-project');
+    let kanbanId = draggable.getAttribute('data-kanban');
+    let currentColumnId = draggable.getAttribute('data-column');
+    let newColumnId = container.getAttribute('data-id')
+
+    let cards = Array.from(container.querySelectorAll('.kanban-card'));
+    let pos = 0;
+    let cardModified;
+    cards.forEach((card, i) => {
+      if (card.classList.contains('dragging')) {
+        pos = i;
+        cardModified = card
+      }
+    })
+
+    cardModified.setAttribute('data-column', newColumnId);
+    let currentColumnCards = Array.from(Array.from(document.querySelectorAll(`.kanban-column`)).filter(c => c.getAttribute('data-id') === currentColumnId)[0].querySelectorAll('.kanban-card'))
+
+    if (currentColumnId !== newColumnId) {
+      console.log("Reset")
+      currentColumnCards.forEach((card, i) => {
+        console.log(i, currentColumnId)
+        fetch(`/projects/${projectId}/kanban/${kanbanId}/card/${card.getAttribute('data-id')}/update?col=${currentColumnId}&pos=${i}`, {
+          method: 'post',
+        })
+      })
+    }
+
+    fetch(`/projects/${projectId}/kanban/${kanbanId}/card/${cardId}/update?col=${newColumnId}&pos=${pos}`, {
+      method: 'post',
+      body: JSON.stringify({
+        position: pos,
+        kanban_column: parseInt(newColumnId)
+      }),
+    })
+
+    cards.forEach((card, i) => {
+      fetch(`/projects/${projectId}/kanban/${kanbanId}/card/${card.getAttribute('data-id')}/update?col=${newColumnId}&pos=${i}`, {
+        method: 'post',
+      })
+    })
   })
 })
 

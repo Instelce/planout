@@ -8,7 +8,8 @@ class KanbanCard extends DBModel
 {
     public int $id = -1;
     public string $content = '';
-    public string $kanban_column = '';
+    public int $kanban_column = -1;
+    public int $position = 1;
 
     public static function tableName(): string
     {
@@ -17,12 +18,12 @@ class KanbanCard extends DBModel
 
     public function attributes(): array
     {
-        return ['content', 'kanban_column'];
+        return ['content', 'position', 'kanban_column'];
     }
 
     public function canUpdateAttributes(): array
     {
-        return ['content'];
+        return ['content', 'position', 'kanban_column'];
     }
 
     public function rules(): array

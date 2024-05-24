@@ -48,6 +48,13 @@ a {
   color: inherit;
 }
 
+button {
+  border: 0;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
 .container {
   min-height: 100vh;
   padding: 0 var(--horizontal-marge);

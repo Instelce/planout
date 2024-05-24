@@ -38,4 +38,9 @@ class KanbanColumn extends DBModel
             'name' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 60], [self::RULE_UNIQUE, 'class' => self::class, 'with' => ['kanban_board']]]
         ];
     }
+
+    public function getCards()
+    {
+        return KanbanCard::find(['kanban_column' => $this->id]);
+    }
 }
