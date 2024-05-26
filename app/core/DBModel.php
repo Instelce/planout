@@ -3,6 +3,8 @@
 
 namespace app\core;
 
+use app\models\User;
+
 abstract class DBModel extends Model
 {
     abstract public static function tableName(): string;
@@ -59,7 +61,7 @@ abstract class DBModel extends Model
         return true;
     }
 
-    public static function findOne($where)
+    public static function findOne($where): ?DBModel
     {
         $tableName = static::tableName();
         $attributes = array_keys($where);
@@ -75,7 +77,7 @@ abstract class DBModel extends Model
         return $statement->fetchObject(static::class);
     }
 
-    public static function find($where)
+    public static function find($where): array
     {
         $tableName = static::tableName();
         $attributes = array_keys($where);

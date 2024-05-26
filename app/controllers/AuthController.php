@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\Mail;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
@@ -40,7 +41,17 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
 
             if ($user->validate() && $user->save()) {
-                Application::$app->session->setFlash("success", "Your account has been created successfully");
+                $mail = new Mail();
+
+                try {
+//                    \mail($user->email, 'Activate your account', Application::$app->view->renderOnlyView('email/activate-user', ['user' => $user]));
+                    $mail->send($user->email, 'Activate your account', 'email/activate-user', ['user' => $user]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
+                    exit;
+                }
+
+                Application::$app->session->setFlash("success", "Your account has been created successfully. Please check your email for activate your account before login.");
                 Application::$app->response->redirect('/connexion');
                 exit;
             }
@@ -60,6 +71,25 @@ class AuthController extends Controller
     {
         Application::$app->logout();
         $response->redirect('/connexion');
+    }
+
+    public function activation()
+    {
+        $activation_hash = Application::$app->request->getParam('token');
+        $user = User::findOne(['activation_hash' => $activation_hash]);
+
+        if (!$user) {
+            Application::$app->session->setFlash('error', 'Invalid token');
+            Application::$app->response->redirect('/connexion');
+            exit;
+        } else {
+            $user->status = User::STATUS_ACTIVE;
+            $user->activation_hash = '';
+            $user->save();
+            Application::$app->session->setFlash('success', 'Your account has been activated successfully');
+            Application::$app->response->redirect('/connexion');
+            exit;
+        }
     }
 
     public function profile() {

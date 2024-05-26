@@ -16,6 +16,7 @@ class User extends UserModel
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
     public string $password_confirm = '';
+    public ?string $activation_hash;
 
     public static function pk(): string
     {
@@ -26,6 +27,7 @@ class User extends UserModel
     {
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->activation_hash = hash('sha256', bin2hex(random_bytes(16)));
         return parent::save();
     }
 
@@ -36,7 +38,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['username', 'status', 'email', 'password'];
+        return ['username', 'email', 'password', 'status', 'activation_hash'];
     }
 
     public function canUpdateAttributes(): array

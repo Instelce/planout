@@ -60,6 +60,7 @@ $app->router->post('/connexion', [AuthController::class, 'login']);
 $app->router->get('/inscription', [AuthController::class, 'register']);
 $app->router->post('/inscription', [AuthController::class, 'register']);
 $app->router->get('/deconnexion', [AuthController::class, 'logout']);
+$app->router->get('/users/activate', [AuthController::class, 'activation']);
 
 
 $app->run();

@@ -6,7 +6,6 @@ class View
 {
     public string $title = '';
 
-
     public function renderView(string $view, array $params)
     {
         $viewContent = $this->renderOnlyView($view, $params);
@@ -31,7 +30,7 @@ class View
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view, $params) {
+    public function renderOnlyView($view, $params) {
         foreach ($params as $key => $value) {
             $$key = $value; // créer une variable qui a comme nom la valeur de la variable $key
         }

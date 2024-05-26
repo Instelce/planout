@@ -22,6 +22,11 @@ class LoginForm extends Model
     {
         $user = User::findOne(['email' => $this->email]);
 
+        if ($user->status === User::STATUS_INACTIVE) {
+            $this->addError('email', 'User account is not active');
+            return false;
+        }
+
         if (!$user) {
             $this->addError('email', 'User does not exist with this email address');
             return false;
