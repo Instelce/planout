@@ -2,6 +2,8 @@
 
 /** @var $this \app\core\View */
 /** @var $projects \app\models\Project[] */
+/** @var $projects_is_member \app\models\Project[] */
+
 
 $this->title = "Projets";
 
@@ -56,3 +58,37 @@ usort($projects, function ($a, $b) {
         </a>
     </div>
 <?php endif; ?>
+
+
+<div class="header header-section mt-2">
+    <h2>Projets partagés</h2>
+</div>
+<?php if (count($projects_is_member)>0): ?>
+<div class="grid gc-4 gg-2 mt-2">
+    <?php foreach ($projects_is_member as $project): ?>
+        <a href="/projects/<?php echo $project->id ?>" class="project-card">
+            <div class="tasks">
+                tache assignée
+            </div>
+            <div class="bottom">
+                <p><?php echo $project->name ?></p>
+
+                <div class="remaining-time">
+                        <span>
+                            <?php
+                            $now = new DateTime(date('Y-m-d'));
+                            $deadline = new DateTime($project->deadline);
+                            $diff = date_diff($now, $deadline);
+
+                            echo $diff->d;
+                            ?>
+                        </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+            </div>
+        </a>
+    <?php endforeach; ?>
+</div>
+<?php else:?>
+    <p class="w-full center mt-2">Vous n'avez accès à aucun projet partagé.</p>
+<?php endif;?>

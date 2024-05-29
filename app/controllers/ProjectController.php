@@ -23,15 +23,25 @@ class ProjectController extends Controller
     {
         $projects = Project::find(['user' => Application::$app->session->get('user')]);
 
-        return $this->render("projects/list", ['projects' => $projects]);
+        $user_member_of = Member::find(['user' => Application::$app->user->id]);
+
+        $projects_where_user = [];
+        foreach ($user_member_of as $member){
+            $project = Project::findOne(["id" => $member->project]);
+            $projects_where_user[]=$project;
+        }
+
+        return $this->render("projects/list", ['projects' => $projects, 'projects_is_member' => $projects_where_user]);
     }
 
     public function details(Request $request)
     {
+        // select project
         $pk = $request->getRouteParam('pk');
         $project = Project::findOne(['id' => $pk]);
         if (!$project) throw new NotFoundException();
 
+        // select members project
         $members = Member::find(['project' => $pk]);
         $kanbanBoard = new KanbanBoard();
         $kanbanBoards = KanbanBoard::find(['project' => $pk]);
