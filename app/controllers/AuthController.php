@@ -85,10 +85,12 @@ class AuthController extends Controller
         } else {
             $user->status = User::STATUS_ACTIVE;
             $user->activation_hash = '';
-            $user->save();
-            Application::$app->session->setFlash('success', 'Your account has been activated successfully');
-            Application::$app->response->redirect('/connexion');
-            exit;
+
+            if ($user->activate()) {
+                Application::$app->session->setFlash('success', 'Your account has been activated successfully');
+                Application::$app->response->redirect('/connexion');
+                exit;
+            }
         }
     }
 

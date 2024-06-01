@@ -23,12 +23,17 @@ class User extends UserModel
         return 'id';
     }
 
-    public function save()
+    public function save(): bool
     {
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->activation_hash = hash('sha256', bin2hex(random_bytes(16)));
         return parent::save();
+    }
+
+    public function activate(): bool
+    {
+        return $this->targetUpdate(['status', 'activation_hash']);
     }
 
     public static function tableName(): string

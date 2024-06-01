@@ -49,6 +49,23 @@ abstract class DBModel extends Model
         return true;
     }
 
+    public function targetUpdate($attributes)
+    {
+        $tableName = $this->tableName();
+        $set = array_map(fn($attr) => "$attr = :$attr", $attributes);
+        $pk = static::pk();
+        $pkValue = $this->{$pk};
+
+        $statement = self::prepare("UPDATE $tableName SET ".implode(",", $set)." WHERE $pk = $pkValue;");
+
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+
+        $statement->execute();
+        return true;
+    }
+
     public function destroy()
     {
         $tableName = static::tableName();
