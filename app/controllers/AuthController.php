@@ -84,7 +84,7 @@ class AuthController extends Controller
             exit;
         } else {
             $user->status = User::STATUS_ACTIVE;
-            $user->activation_hash = '';
+            $user->activation_hash = null;
 
             if ($user->activate()) {
                 Application::$app->session->setFlash('success', 'Your account has been activated successfully');
